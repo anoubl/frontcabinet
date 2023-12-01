@@ -1,0 +1,618 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: linear-gradient(to bottom, #d2f5fc2a, #00b4d81e);
+}
+
+.about-section,
+.find-us-section,
+.our-services {
+  padding-top: 50px;
+}
+
+/* Topbar */
+#topbar {
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-info a {
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.social-links {
+  gap: 10px;
+}
+
+.social-links a {
+  color: #437099 !important;
+}
+
+.social-links a:hover {
+  color: #0006b2 !important;
+}
+
+.contact-info {
+  gap: 10px;
+}
+
+.contact-info a {
+  text-decoration: none;
+}
+
+/* Navbar section */
+.navbar-nav .nav-item a {
+  color: hsl(204, 100%, 50%);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navbar-nav .nav-item a:hover {
+  color: hsl(204, 76%, 27%);
+  text-decoration: underline;
+}
+
+.topbar {
+  background-color: hsla(204, 100%, 50%, 0.133);
+}
+
+.navbar {
+  background: #fff;
+}
+
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.appointment-button {
+  background: #1977cc;
+  color: #fff !important;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.appointment-button:hover {
+  background: #1c006e;
+  color: #fff;
+  text-decoration: none;
+}
+
+.bookings-about {
+  text-align: center;
+  font-size: 22px;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler:hover {
+  border: 3px solid #86c7ff;
+}
+
+/* Header section */
+.header-container {
+  background-image: url("assets/img/mainheader-logo.webp");
+  height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-h1 {
+  text-transform: uppercase;
+  color: #00223d !important;
+}
+
+.btn-get-started {
+  line-height: 1.5;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 12px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #fff;
+  background: #1977cc;
+  max-width: 240px;
+  text-align: center;
+}
+
+.btn-get-started:hover {
+  background: #1c006e;
+}
+
+.header-h1-btn-wrapper {
+  padding-top: 10rem;
+  padding-left: 5rem;
+}
+
+/* about section */
+.section-title {
+  text-align: center;
+  color: #1977cc;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+}
+
+.about-p {
+  font-size: 20px;
+}
+
+.cabinet-img {
+  max-width: 550px !important;
+  width: 100%;
+  max-height: 380px !important;
+  height: 100% !important;
+}
+
+/* Find us section */
+.findus-img {
+  max-height: 300px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.findus-p {
+  font-size: 22px;
+  order: 1px solid lightgray;
+  padding: 5px;
+  min-height: 170px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.findus-span {
+  color: #1977cc;
+}
+
+.findus-card {
+  background-color: #b9d9f4;
+  padding: 20px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px 1px;
+  border-radius: 20px 100px;
+  margin-bottom: 20px;
+  height: 300px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.right-card {
+  border-radius: 100px 20px;
+}
+
+.findus-card:hover {
+  transform: translateY(-5px);
+}
+
+/* services section */
+
+.services-img {
+  max-width: 350px;
+  width: 100%;
+  max-height: 200px;
+  height: 100%;
+  box-shadow: rgb(140 140 140 / 29%) 1px 1px 1px 1px;
+  border-radius: 7px;
+}
+
+.service-title {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+/* our team section */
+.our-team {
+  margin-top: 50px;
+}
+
+.our-team-h2 {
+  margin-bottom: 40px;
+}
+
+.dr-pic {
+  box-shadow: rgb(167, 148, 148) 1px 1px 1px 1px;
+}
+
+.dr-name {
+  font-size: 28px;
+}
+
+.dr-title {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.dr-col {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.dr-pic {
+  max-width: 400px;
+  width: 100%;
+  max-height: 540px;
+  height: 100%;
+}
+
+.our-team a {
+  text-decoration: none;
+}
+
+/* testimonials section */
+.testimonials-title {
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
+.card-img {
+  max-width: 90px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 50%;
+}
+
+.person-name {
+  font-weight: 700 !important;
+  font-size: 20px;
+}
+
+.card {
+  text-align: center;
+  background-color: #b9d9f4;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 420px;
+}
+
+/* footer */
+.footer {
+  background-color: #001148;
+  color: #fff;
+  margin-top: 50px;
+}
+
+.footer .footer-phone {
+  color: #fff;
+  display: inline !important;
+}
+
+.footer .footer-phone:hover {
+  text-decoration: underline !important;
+  color: #1977cc !important;
+}
+
+/* FAQ Section */
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* Careers */
+.careers-section {
+  padding: 1rem;
+  color: #00223d;
+}
+
+.careers-email {
+  color: #1977cc;
+  font-weight: bold;
+}
+
+/* Articles */
+/* Custom styles for the new section */
+.custom-section {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  max-height: 580px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-heading {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.custom-list {
+  list-style-type: decimal;
+  margin-left: 20px;
+}
+
+.custom-paragraph {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* our team carousel */
+/* Custom styling for the carousel */
+.custom-carousel {
+  margin-top: 20px;
+}
+
+.carousel-status {
+  display: none;
+}
+
+/* Styling for the team member slides */
+.dr-member {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dr-pic {
+  max-width: 300px;
+  min-height: 370px;
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.dr-name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.dr-title {
+  font-size: 18px;
+}
+
+.carousel .control-dots .dot {
+  transition: opacity 0.25s ease-in;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  background: rgb(14, 35, 158) !important;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.control-dots {
+  margin: -5px !important;
+}
+.control-arrow {
+  display: none;
+}
+
+.our-team-h2 {
+  margin-bottom: 20px;
+}
+
+.dr-paragraph {
+  margin-bottom: 0 !important;
+}
+
+.custom-heading {
+  text-align: center;
+}
+
+/*  */
+.our-team {
+  margin-top: 50px;
+}
+
+.our-team-h2 {
+  margin-bottom: 40px;
+}
+
+.dr-pic {
+  box-shadow: rgb(167, 148, 148) 1px 1px 1px 1px;
+}
+
+.dr-name {
+  font-size: 28px;
+}
+
+.dr-title {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.dr-col {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.dr-pic {
+  max-width: 400px;
+  width: 100%;
+  max-height: 540px;
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.our-team a {
+  text-decoration: none;
+}
+
+.dr-member {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.dr-paragraph {
+  margin-bottom: 0 !important;
+}
+
+.custom-heading {
+  text-align: center;
+}
+
+.dr-pic {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.navbar-nav .nav-item a {
+  padding: 8px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 991px) {
+  .navbar-nav .nav-item a {
+    padding: 2px;
+  }
+
+  .caca {
+    background-image: linear-gradient(to bottom, #d2f5fc2a, #00b4d81e);
+  }
+
+  #topbar {
+    display: none !important;
+  }
+
+  .find-us-section {
+    margin-top: 0;
+  }
+
+  .testimonials-row .col-xl-4 {
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .dr-description {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about-section,
+  .find-us-section,
+  .our-services {
+    padding-bottom: 0px;
+    padding-top: 20px;
+  }
+
+  p {
+    font-size: 18px !important;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .findus-card {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .findus-p {
+    font-size: 20px;
+  }
+
+  .findus-card {
+    height: 200px;
+  }
+
+  .dr-member {
+    flex-direction: column;
+    min-height: 150px;
+    width: 100%;
+  }
+
+  p {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .findus-card {
+    border-radius: 40px 20px;
+  }
+
+  .header-h1-btn-wrapper {
+    padding: 0;
+  }
+
+  .header-h1-btn-wrapper {
+    padding-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .dr-row {
+    flex-wrap: wrap !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  iframe {
+    width: 200px;
+  }
+
+  .findus-card {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .services-img {
+    height: auto;
+  }
+
+  .service-title {
+    font-size: 16px;
+  }
+}
