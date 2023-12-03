@@ -14,6 +14,7 @@ import Dashboard from "./Infermerie/Dashboard";
 import Header from "./Components/Header";
 import NosServices from "./Components/OurServices";
 import NotreEquipe from "./Components/OurTeam";
+import Patients from "./Patients/Patients";
 
 function App() {
   useEffect(() => {
@@ -35,6 +36,8 @@ function App() {
           <Route path="/service" element={<NosServices />} />
           <Route path="/équipe" element={<NotreEquipe />} />
           <Route path="/Dashboard-inf" element={<Dashboard />} />
+          <Route path="/manage-patient" element={<Patients/>} />
+
         </Routes>
       </div>
     </Router>
