@@ -15,7 +15,7 @@ const Topbar = () => {
         <div className="container d-flex justify-content-between">
           <div className="contact-info d-flex align-items-center">
             <FontAwesomeIcon icon={faEnvelope} style={{ color: "#3fbbc0" }} />
-            <a href="AliCranta@Gmail.Com">pneumotherapy@yahoo.com</a>
+            <a href="amine@Gmail.Com">amine@yahoo.com</a>
             <FontAwesomeIcon icon={faPhone} style={{ color: "#3fbbc0" }} />{" "}
             <a href="tel:0725596895">0725 596 895</a>
             <FontAwesomeIcon icon={faPhone} style={{ color: "#3fbbc0" }} />{" "}

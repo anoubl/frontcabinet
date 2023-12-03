@@ -42,7 +42,7 @@ const Footer = () => {
             <p className="footer-mail">
               <FontAwesomeIcon icon={faEnvelope} style={{ color: "#3fbbc0" }} />{" "}
               <a href="mailto:pneumotherapy@yahoo.com">
-                pneumotherapy@yahoo.com
+                ali@yahoo.com
               </a>
             </p>
             <p className="schedule-title mb-0">Program:</p>
@@ -95,19 +95,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row mt-4">
-          <div className="col-md-12 text-center">
-            <p>
-              &copy; 2023 AliCranta Medical Center. Toate drepturile rezervate.
-            </p>
-            <p>
-              Website created and maintained by Mihai Gabriel -{" "}
-              <a href="https://www.linkedin.com/in/gabriel-mihai-924042234/">
-                webdesign / administrare web
-              </a>
-            </p>
-          </div>
-        </div>
+       
       </div>
     </footer>
   );

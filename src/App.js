@@ -12,6 +12,8 @@ import Articles from "./Components/Articles";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import Contact from "./Components/Contact";
+import SignIn from "./Components/SignIn";
+import Dashboard from "./Infermerie/Dashboard";
 
 function App() {
   useEffect(() => {
@@ -30,6 +32,8 @@ function App() {
           <Route exact path="/bookings" element={<Bookings />} />
           <Route exact path="/articles" element={<Articles />} />
           <Route exact path="/contact" element={<Contact/>} />
+          <Route exact path="/SignIn" element={<SignIn/>} />
+          <Route exact path="/Dashboard" element={<Dashboard/>} />
 
         </Routes>
         <Footer />

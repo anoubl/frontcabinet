@@ -64,6 +64,13 @@ const Navbar = () => {
                 </button>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/SignIn">
+                <button className="btn btn-primary appointment-button">
+                 Login
+                </button>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
