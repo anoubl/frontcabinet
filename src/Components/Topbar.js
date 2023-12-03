@@ -7,9 +7,12 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import Navbar from "./Navbar";
 
 const Topbar = () => {
   return (
+    <>
+
     <div className="topbar">
       <div id="topbar" className="d-flex align-items-center">
         <div className="container d-flex justify-content-between">
@@ -54,6 +57,9 @@ const Topbar = () => {
         </div>
       </div>
     </div>
+   
+    </>
+   
   );
 };
 

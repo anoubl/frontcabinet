@@ -1,11 +1,16 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const Bookings = () => {
   // Obtenir la date d'aujourd'hui au format yyyy-mm-dd
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div
+    <>
+    <Navbar>
+
+ 
+       <div
       className="bookings-section"
       data-aos="fade-up"
       data-aos-duration="1000"
@@ -170,6 +175,9 @@ const Bookings = () => {
         </form>
       </div>
     </div>
+    </Navbar>
+    </>
+ 
   );
 };
 

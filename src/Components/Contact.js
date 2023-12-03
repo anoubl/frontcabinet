@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 import { Form, Button, Row, Col } from "react-bootstrap";
+import Navbar from "./Navbar";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -22,6 +23,9 @@ const Contact = () => {
   };
 
   return (
+    <>
+    <Navbar>
+ 
     <div className="contact-section" data-aos="fade-up" data-aos-duration="1000">
       <h2 className="section-title">Contactez-nous</h2>
       
@@ -68,6 +72,9 @@ const Contact = () => {
         </Button>
       </Form>
     </div>
+         
+    </Navbar>
+    </>
   );
 };
 

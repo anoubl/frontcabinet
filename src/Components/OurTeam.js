@@ -6,6 +6,7 @@ import drali from "../assets/img/drali.webp";
 import branzei from "../assets/img/branzei.webp";
 import drdruga from "../assets/img/drdruga.jpeg";
 import popescu from "../assets/img/popescu.webp";
+import Navbar from "./Navbar";
 
 const MembreEquipe = ({ imageSrc, nom, description }) => (
   <div className="dr-member" id="dr-member">
@@ -25,6 +26,10 @@ const MembreEquipe = ({ imageSrc, nom, description }) => (
 
 const NotreEquipe = () => {
   return (
+    <>
+    <Navbar>
+
+  
     <div
       className="our-team our-team-wrapper container-fluid"
       id="our-team"
@@ -87,6 +92,8 @@ const NotreEquipe = () => {
         />
       </Carousel>
     </div>
+    </Navbar>
+    </>
   );
 };
 

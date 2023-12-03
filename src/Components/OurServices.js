@@ -5,9 +5,12 @@ import pulsoximetrie from "../assets/img/pulsoximetrie.jpeg";
 import apnee from "../assets/img/apnee.webp";
 import spirometrie from "../assets/img/spirometrie.jpeg";
 import masaj from "../assets/img/masaj.jpeg";
+import Navbar from "./Navbar";
 
 const NosServices = () => {
   return (
+    <>
+    <Navbar>
     <div
       className="container-fluid services-wrapper"
       id="services-wrapper"
@@ -94,6 +97,8 @@ const NosServices = () => {
         </div>
       </div>
     </div>
+    </Navbar>
+    </>
   );
 };
 

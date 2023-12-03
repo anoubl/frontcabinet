@@ -1,9 +1,14 @@
 import React from "react";
 import tbcLogo from "../assets/logos/tbc-logo.jpeg";
+import Navbar from "./Navbar";
 
 const Articles = () => {
   return (
-    <div
+    <>
+    <Navbar>
+
+   
+     <div
       className="articles-section"
       data-aos="fade-up"
       data-aos-duration="1000"
@@ -65,6 +70,9 @@ const Articles = () => {
         </div>
       </div>
     </div>
+    </Navbar>
+    </>
+   
   );
 };
 

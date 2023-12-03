@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
+    <>
+    
+  <Navbar>
     <div
       className="header-container container-fluid"
       data-aos="fade-up"
@@ -11,11 +16,12 @@ const Header = () => {
         <h1 className="header-h1">
           Bienvenue au Centre Médical AliCranta <br /> 
         </h1>
-        <a href="#about" className="btn-get-started">
-          En savoir plus
-        </a>
+      
+        <Link className="btn btn-primary" to="about">En savoir plus</Link>
       </div>
     </div>
+    </Navbar>
+    </>
   );
 };
 

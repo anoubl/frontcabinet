@@ -1,7 +1,10 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const FoireAuxQuestions = () => {
   return (
+    <>
+    <Navbar>
     <div className="faq-section" data-aos="fade-up" data-aos-duration="1000">
       <div
         className="accordion container mt-5"
@@ -102,6 +105,8 @@ const FoireAuxQuestions = () => {
         </div>
       </div>
     </div>
+    </Navbar>
+    </>
   );
 };
 

@@ -1,7 +1,11 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const Carrières = () => {
   return (
+    <>
+   <Navbar>
+
     <div className="carreers-wrapper">
       <div className="header">
         <h1 className="mt-3 mb-4 section-title">Notre clinique s'agrandit</h1>
@@ -21,6 +25,9 @@ const Carrières = () => {
         </p>
       </div>
     </div>
+        
+   </Navbar>
+    </>
   );
 };
 

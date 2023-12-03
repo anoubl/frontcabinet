@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import the AOS styles
+import "aos/dist/aos.css";
 import "./App.css";
 import Faq from "./Components/Faq";
-import Footer from "./Components/Footer";
-import Navbar from "./Components/Navbar";
-import Topbar from "./Components/Topbar";
+import About from "./Components/AboutUs"
 import Careers from "./Components/Careers";
 import Bookings from "./Components/Bookings";
 import Articles from "./Components/Articles";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
 import Contact from "./Components/Contact";
 import SignIn from "./Components/SignIn";
 import Dashboard from "./Infermerie/Dashboard";
+import Header from "./Components/Header";
+import NosServices from "./Components/OurServices";
+import NotreEquipe from "./Components/OurTeam";
 
 function App() {
   useEffect(() => {
@@ -23,20 +23,19 @@ function App() {
   return (
     <Router>
       <div className="app-wrapper">
-        <Topbar />
-        <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/faq" element={<Faq />} />
-          <Route exact path="/careers" element={<Careers />} />
-          <Route exact path="/bookings" element={<Bookings />} />
-          <Route exact path="/articles" element={<Articles />} />
-          <Route exact path="/contact" element={<Contact/>} />
-          <Route exact path="/SignIn" element={<SignIn/>} />
-          <Route exact path="/Dashboard" element={<Dashboard/>} />
-
+          <Route path="/" element={<Header />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/service" element={<NosServices />} />
+          <Route path="/équipe" element={<NotreEquipe />} />
+          <Route path="/Dashboard-inf" element={<Dashboard />} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );

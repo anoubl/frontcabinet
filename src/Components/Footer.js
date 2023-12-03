@@ -5,6 +5,8 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
+    <>
+    
     <footer className="footer p-5" data-aos="fade-up" data-aos-duration="1000">
       <div className="container" data-aos="fade-up" data-aos-duration="1000">
         <div className="row justify-content-center">
@@ -98,6 +100,8 @@ const Footer = () => {
        
       </div>
     </footer>
+    
+     </>
   );
 };
 

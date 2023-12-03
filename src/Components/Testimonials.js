@@ -2,9 +2,13 @@ import React from "react";
 import person1 from "../assets/img/person1.png"; // Importer l'image
 import person2 from "../assets/img/person2.webp"; // Importer l'image
 import person3 from "../assets/img/person3.png"; // Importer l'image
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const Temoignages = () => {
   return (
+    <>
+    <Navbar>
     <div
       className="section-testimonials container"
       data-aos="fade-up"
@@ -56,7 +60,11 @@ const Temoignages = () => {
           </div>
         </div>
       </div>
+    
     </div>
+    </Navbar>
+    </>
+   
   );
 };
 

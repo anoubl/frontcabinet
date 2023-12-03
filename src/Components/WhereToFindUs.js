@@ -1,8 +1,11 @@
 import findus from "../assets/img/findus.avif";
 import React from "react";
+import Navbar from "./Navbar";
 
 const OùNousTrouver = () => {
   return (
+    <>
+    <Navbar>
     <div
       className="container-fluid findus-wrapper"
       data-aos="fade-up"
@@ -51,6 +54,9 @@ const OùNousTrouver = () => {
         </h2>
       </div>
     </div>
+    </Navbar>
+    </>
+   
   );
 };
 

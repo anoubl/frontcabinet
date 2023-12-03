@@ -1,9 +1,12 @@
 import React from "react";
 import cabinet1Image from "../assets/img/cabinet1.webp"; // Importer l'image
 import cabinet2Image from "../assets/img/cabinet2.webp"; // Importer l'image
+import Navbar from "./Navbar";
 
 const APropos = () => {
   return (
+    <>
+    <Navbar>
     <div
       className="container-fluid about-wrapper"
       data-aos="fade-up"
@@ -42,6 +45,9 @@ const APropos = () => {
         </div>
       </div>
     </div>
+    </Navbar>
+   
+    </>
   );
 };
 
