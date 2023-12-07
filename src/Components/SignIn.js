@@ -14,7 +14,7 @@ export default function SignIn() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("https://localhost:7184/api/Users/login", {
+      const response = await axios.post("https://anoubl-001-site1.atempurl.com/api/Users/login", {
         Email: email,
         Password: password
       }, {
@@ -39,7 +39,6 @@ export default function SignIn() {
       } else {
         console.log("Invalid email or password");
       }
-
     } catch (error) {
      
       if (error.response && error.response.status === 400) {

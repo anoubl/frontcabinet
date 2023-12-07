@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 // ... Autres importations ...
 
@@ -24,6 +24,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 const drawerWidth = 240;
@@ -45,6 +46,8 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -76,11 +79,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard(props) {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
+  const handleLogout = () => {
+    // Ajoutez le code de déconnexion ici, par exemple, redirection vers la page de connexion.
+    navigate('/SignIn'); // Utilisez navigate pour rediriger vers la page de connexion.
+  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -116,6 +123,9 @@ export default function Dashboard(props) {
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
+            </IconButton>
+            <IconButton color="inherit" onClick={handleLogout} >
+              <ExitToAppIcon />
             </IconButton>
           </Toolbar>
         </AppBar>

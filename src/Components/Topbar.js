@@ -7,8 +7,6 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import Navbar from "./Navbar";
-
 const Topbar = () => {
   return (
     <>

@@ -16,6 +16,7 @@ import NosServices from "./Components/OurServices";
 import NotreEquipe from "./Components/OurTeam";
 import Patients from "./Patients/Patients";
 
+
 function App() {
   useEffect(() => {
     AOS.init(); // Initialize AOS
@@ -36,9 +37,9 @@ function App() {
           <Route path="/service" element={<NosServices />} />
           <Route path="/équipe" element={<NotreEquipe />} />
           <Route path="/Dashboard-inf" element={<Dashboard />} />
-          <Route path="/manage-patient" element={<Patients/>} />
-
+          <Route path="/manage-patient" element={<Patients />} />
         </Routes>
+   
       </div>
     </Router>
   );

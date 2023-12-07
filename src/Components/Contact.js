@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+
 
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Navbar from "./Navbar";
@@ -9,7 +8,6 @@ const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // Ajoutez ici la logique pour traiter le formulaire (envoyer un e-mail, etc.)
