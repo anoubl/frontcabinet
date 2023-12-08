@@ -15,6 +15,7 @@ import Header from "./Components/Header";
 import NosServices from "./Components/OurServices";
 import NotreEquipe from "./Components/OurTeam";
 import Patients from "./Patients/Patients";
+import Rendezvous from "./Components/RendezVous/Rendezvous";
 
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
           <Route path="/équipe" element={<NotreEquipe />} />
           <Route path="/Dashboard-inf" element={<Dashboard />} />
           <Route path="/manage-patient" element={<Patients />} />
+          <Route path="/manage-rendezvous" element={<Rendezvous/>} />
+
         </Routes>
    
       </div>

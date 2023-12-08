@@ -152,7 +152,12 @@ export default function Dashboard(props) {
               </ListItemIcon>
               <ListItemText primary="Gérer les patients" />
             </ListItem>
-
+            <ListItem component={RouterLink} to="/manage-rendezvous" button>
+              <ListItemIcon>
+                <AssignmentIndIcon />
+              </ListItemIcon>
+              <ListItemText primary="Gérer les rendez-vous" />
+            </ListItem>
           </List>
         </Drawer>
 

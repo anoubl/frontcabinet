@@ -33,7 +33,7 @@ const Bookings = () => {
             <thead>
               <tr>
                 <th scope="col">1</th>
-                <th scope="col">Dr. Ali Cranta</th>
+                <th scope="col">Dr. Ali Benani</th>
                 <th scope="col">
                   Mardi, Jeudi et Vendredi de 14h00 à 21h00
                 </th>
@@ -43,7 +43,7 @@ const Bookings = () => {
             <tbody>
               <tr>
                 <th scope="row">2</th>
-                <td>Dr. Brânzei Speranța Maria</td>
+                <td>Dr. Salma Benani</td>
                 <td>Lundi, Mardi, Jeudi et Vendredi de 09h30 à 14h00</td>
               </tr>
             </tbody>
