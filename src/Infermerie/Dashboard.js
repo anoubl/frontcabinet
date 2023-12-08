@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import EventNoteIcon from '@material-ui/icons/EventNote'; // Importez l'icône que vous souhaitez utiliser
 
 // ... Autres importations ...
 
@@ -154,7 +155,8 @@ export default function Dashboard(props) {
             </ListItem>
             <ListItem component={RouterLink} to="/manage-rendezvous" button>
               <ListItemIcon>
-                <AssignmentIndIcon />
+                {/* Remplacez AssignmentIndIcon par l'icône de votre choix, par exemple EventNoteIcon */}
+                <EventNoteIcon />
               </ListItemIcon>
               <ListItemText primary="Gérer les rendez-vous" />
             </ListItem>
