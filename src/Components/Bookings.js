@@ -6,6 +6,7 @@ const Bookings = () => {
   // Obtenir la date d'aujourd'hui au format yyyy-mm-dd
   const today = new Date().toISOString().split("T")[0];
   const [users, setusers] = useState([]);
+  const [formData, setFormData] = useState({});
   useEffect(() => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => {
@@ -14,7 +15,26 @@ const Bookings = () => {
       .catch((error) => console.log(error))
   }, []);
   const filteredDoctors = users.filter((dctr) => dctr.rôle === 1);
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleForm = (e) => {
+    e.preventDefault();
 
+    // Effectuez votre logique de validation ici si nécessaire
+
+    // Envoi de la requête POST
+    axios.post("https://anoubl-001-site1.atempurl.com/api/Users", formData)
+      .then((response) => {
+        console.log("Requête réussie", response);
+        // Ajoutez ici le code pour gérer la réponse réussie
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête", error);
+        // Ajoutez ici le code pour gérer les erreurs de requête
+      });
+  };
   return (
     <>
       <Navbar>
@@ -61,7 +81,7 @@ const Bookings = () => {
           <h2 className="section-title">Nous ne sommes qu'à un clic de distance.</h2>
           <div className="container">
             <form
-              action="https://formspree.io/f/xoqoovla"
+              onSubmit={handleForm} 
               method="POST"
               className="row g-3"
             >
@@ -74,7 +94,7 @@ const Bookings = () => {
                   className="form-control"
                   id="inputFirstName"
                   name="Prenom:" // Ajout de l'attribut name
-                  defaultValue="Popa"
+                  onChange={handleFormChange}
                 />
               </div>
               <div className="col-md-6">
@@ -86,8 +106,7 @@ const Bookings = () => {
                   className="form-control"
                   id="inputLastName"
                   name="Nom:" // Ajout de l'attribut name
-                  defaultValue="Andrei"
-                />
+                  onChange={handleFormChange} />
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputEmail" className="form-label">
@@ -98,8 +117,7 @@ const Bookings = () => {
                   className="form-control"
                   id="inputEmail"
                   name="Adresse e-mail:" // Ajout de l'attribut name
-                  defaultValue="abc@xyz.com"
-                />
+                  onChange={handleFormChange} />
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputPhone" className="form-label">
@@ -110,14 +128,13 @@ const Bookings = () => {
                   className="form-control"
                   id="inputPhone"
                   name="Numero de telephone:" // Ajout de l'attribut name
-                  defaultValue="+40712545676"
-                />
+                  onChange={handleFormChange} />
               </div>
-              <div className="col-12">
+              <div className="col-md-6">
                 <label htmlFor="inputDoctor" className="form-label">
                   Rendez-vous avec :
                 </label>
-                <select id="inputDoctor" className="form-select" name="dctrid">
+                <select id="inputDoctor" onChange={handleFormChange} className="form-select" name="dctrid">
                   {filteredDoctors.map((dctr) => (
                     <option key={dctr.id} value={dctr.id}>
                       {dctr.prenom + " " + dctr.nom}
@@ -126,11 +143,24 @@ const Bookings = () => {
                 </select>
 
               </div>
+              <div className="col-md-6">
+                <label htmlFor="inputAdresse" className="form-label">
+                  Adresse :
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputLastName"
+                  name="Adresse:"
+                  onChange={handleFormChange}
+                />
+              </div>
               <div className="col-12">
                 <label htmlFor="inputDescription" className="form-label">
                   Description des symptômes :
                 </label>
                 <textarea
+                  onChange={handleFormChange}
                   id="inputDescription"
                   className="form-control"
                   name="Description du probleme:" // Ajout de l'attribut name
@@ -142,6 +172,7 @@ const Bookings = () => {
                   Date du rendez-vous :
                 </label>
                 <input
+                  onChange={handleFormChange}
                   type="date"
                   className="form-control"
                   id="inputDate"
@@ -154,6 +185,7 @@ const Bookings = () => {
                   Plage horaire :
                 </label>
                 <input
+                  onChange={handleFormChange}
                   type="time"
                   className="form-control"
                   id="inputTime"
