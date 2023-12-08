@@ -7,7 +7,6 @@ import branzei from "../assets/img/branzei.webp";
 import drdruga from "../assets/img/drdruga.jpeg";
 import popescu from "../assets/img/popescu.webp";
 import Navbar from "./Navbar";
-
 const MembreEquipe = ({ imageSrc, nom, description }) => (
   <div className="dr-member" id="dr-member">
     <img className="img-fluid rounded dr-pic" src={imageSrc} alt="Notre docteur" />
