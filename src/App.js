@@ -19,7 +19,7 @@ import Rendezvous from "./Components/RendezVous/Rendezvous";
 import Dashboarddoc from "./Docteur/Dashboard";
 import Patientdoc from "./Docteur/Patients/Patients";
 
-
+import InfermierDoc from "./Docteur/Infermier/Infermier";
 function App() {
   useEffect(() => {
     AOS.init(); // Initialize AOS
@@ -44,6 +44,7 @@ function App() {
           <Route path="/manage-patient-doc" element={<Patientdoc />} />
           <Route path="/manage-rendezvous" element={<Rendezvous/>} />
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
+          <Route path="/Manage-inf" element={<InfermierDoc/>} />
 
         </Routes>
    

@@ -151,19 +151,12 @@ export default function Dashboarddoc(props) {
               </ListItemIcon>
               <ListItemText primary="liste-patients" />
             </ListItem>
-            <ListItem component={RouterLink} to="/manage-infermiers" button>
+            <ListItem component={RouterLink} to="/Manage-inf" button>
               <ListItemIcon>
                 {/* Remplacez AssignmentIndIcon par l'icône de votre choix, par exemple EventNoteIcon */}
                 <EventNoteIcon />
               </ListItemIcon>
-              <ListItemText primary="Gérer les infermiers" />
-            </ListItem>
-            <ListItem component={RouterLink} to="/manage-dossiers" button>
-              <ListItemIcon>
-                {/* Remplacez AssignmentIndIcon par l'icône de votre choix, par exemple EventNoteIcon */}
-                <EventNoteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Gérer les dossiers  médicaux " />
+              <ListItemText primary="liste des infermiers" />
             </ListItem>
           </List>
         </Drawer>
