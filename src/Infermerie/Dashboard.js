@@ -16,9 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import EventNoteIcon from '@material-ui/icons/EventNote'; // Importez l'icône que vous souhaitez utiliser
-
-// ... Autres importations ...
+import EventNoteIcon from '@mui/icons-material/EventNote';// ... Autres importations ...
 
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';

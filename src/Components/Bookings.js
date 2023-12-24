@@ -8,7 +8,7 @@ const Bookings = () => {
   const [users, setusers] = useState([]);
   const [formData, setFormData] = useState({});
   useEffect(() => {
-    axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
+    axios.get("https://localhost:7184/api/Users")
       .then((response) => {
         setusers(response.data);
       })
@@ -23,17 +23,27 @@ const Bookings = () => {
     e.preventDefault();
 
     // Effectuez votre logique de validation ici si nécessaire
-
-    // Envoi de la requête POST
-    axios.post("https://anoubl-001-site1.atempurl.com/api/Users", formData)
+     console.log(formData)
+    //Envoi de la requête POST
+    axios.post("https://localhost:7184/api/Users", {
+      prenom:formData.prenom,
+      nom:formData.nom,
+      telephone:formData.telephone,
+      email:formData.email,
+      adresse:formData.adresse
+   })
       .then((response) => {
         console.log("Requête réussie", response);
-        // Ajoutez ici le code pour gérer la réponse réussie
+       //Ajoutez ici le code pour gérer la réponse réussie
       })
       .catch((error) => {
         console.error("Erreur lors de la requête", error);
-        // Ajoutez ici le code pour gérer les erreurs de requête
+       // Ajoutez ici le code pour gérer les erreurs de requête
       });
+    axios.post("https://localhost:7184/api/RendezVous",{
+      DocteurId:formData.dctrid,
+      
+    });
   };
   return (
     <>
@@ -93,7 +103,7 @@ const Bookings = () => {
                   type="text"
                   className="form-control"
                   id="inputFirstName"
-                  name="Prenom:" // Ajout de l'attribut name
+                  name="nom" // Ajout de l'attribut name
                   onChange={handleFormChange}
                 />
               </div>
@@ -105,7 +115,7 @@ const Bookings = () => {
                   type="text"
                   className="form-control"
                   id="inputLastName"
-                  name="Nom:" // Ajout de l'attribut name
+                  name="prenom" // Ajout de l'attribut name
                   onChange={handleFormChange} />
               </div>
               <div className="col-md-6">
@@ -116,7 +126,7 @@ const Bookings = () => {
                   type="email"
                   className="form-control"
                   id="inputEmail"
-                  name="Adresse e-mail:" // Ajout de l'attribut name
+                  name="email" // Ajout de l'attribut name
                   onChange={handleFormChange} />
               </div>
               <div className="col-md-6">
@@ -127,7 +137,7 @@ const Bookings = () => {
                   type="tel"
                   className="form-control"
                   id="inputPhone"
-                  name="Numero de telephone:" // Ajout de l'attribut name
+                  name="telephone" // Ajout de l'attribut name
                   onChange={handleFormChange} />
               </div>
               <div className="col-md-6">
@@ -151,7 +161,7 @@ const Bookings = () => {
                   type="text"
                   className="form-control"
                   id="inputLastName"
-                  name="Adresse:"
+                  name="adresse"
                   onChange={handleFormChange}
                 />
               </div>
@@ -190,12 +200,7 @@ const Bookings = () => {
                   className="form-control"
                   id="inputTime"
                   name="Heure:" // Ajout de l'attribut name
-                  onChange={(e) => {
-                    const selectedTime = e.target.value;
-                    if (selectedTime < "08:00" || selectedTime > "20:00") {
-                      e.target.value = "08:00";
-                    }
-                  }}
+                 
                 />
               </div>
 
