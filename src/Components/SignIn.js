@@ -30,7 +30,7 @@ export default function SignIn() {
 
         // Redirect based on user role
         if (userRole === 1) {
-          navigate('/admin');
+          navigate('/Dashboard-doc');
         } else if (userRole === 0) {
           navigate('/Dashboard-inf');
         } else {
