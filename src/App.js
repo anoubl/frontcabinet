@@ -15,7 +15,7 @@ import Header from "./Components/Header";
 import NosServices from "./Components/OurServices";
 import NotreEquipe from "./Components/OurTeam";
 import Patients from "./Patients/Patients";
-import Rendezvous from "./Components/RendezVous/Rendezvous";
+import RendezVous from "./Infermerie/rendezvous/RendezVous";
 import Dashboarddoc from "./Docteur/Dashboard";
 import Patientdoc from "./Docteur/Patients/Patients";
 
@@ -43,7 +43,7 @@ function App() {
           <Route path="/Dashboard-inf" element={<Dashboard />} />
           <Route path="/manage-patient" element={<Patients />} />
           <Route path="/manage-patient-doc" element={<Patientdoc />} />
-          <Route path="/manage-rendezvous" element={<Rendezvous/>} />
+          <Route path="/manage-rendezvous" element={<RendezVous/>} />
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
 
