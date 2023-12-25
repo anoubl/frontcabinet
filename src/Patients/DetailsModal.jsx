@@ -8,12 +8,30 @@ import {
   Typography,
 } from '@mui/material';
 const DetailsModal = ({ user, open, onClose }) => {
+  const dialogTitleStyle = {
+    backgroundColor: '#2196F3',
+    color: '#fff',
+  };
+
+  const closeButtonStyle = {
+    color: '#fff',
+    backgroundColor: '#4CAF50',
+  };
+
+  const detailRowLabelStyle = {
+    fontWeight: 'bold',
+  };
+
+  const patientDetailsStyle = {
+    margin: '40px',
+  };
+
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle className="bg-primary text-white">Patient Details</DialogTitle>
+      <DialogTitle style={dialogTitleStyle}>Patient Details</DialogTitle>
       <DialogContent>
         {user ? (
-          <div>
+          <div style={patientDetailsStyle}>
             <div className="row">
               <div className="col-md-6">
                 <DetailRow label="Prénom" value={user.prenom} />
@@ -34,7 +52,7 @@ const DetailsModal = ({ user, open, onClose }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} className="btn btn-success">
+        <Button onClick={onClose} style={closeButtonStyle}>
           Close
         </Button>
       </DialogActions>
@@ -43,9 +61,17 @@ const DetailsModal = ({ user, open, onClose }) => {
 };
 
 const DetailRow = ({ label, value }) => {
+  const detailRowStyle = {
+    marginBottom: '2px',
+  };
+
+  const detailRowLabelStyle = {
+    fontWeight: 'bold',
+  };
+
   return (
-    <div className="mb-2">
-      <strong>{label}: </strong>
+    <div style={detailRowStyle}>
+      <span style={detailRowLabelStyle}>{label}: </span>
       {value}
     </div>
   );
