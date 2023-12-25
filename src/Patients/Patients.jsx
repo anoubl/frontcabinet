@@ -30,13 +30,13 @@ function Patients() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [message, setMessage] = useState("");
-  const filterusers=users.filter((user)=>user.rôle===2);
+  const filterusers=users.filter((user)=>user.rôle===2 && user.etat===1);
   const handleusers = () => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
-      .then((response) => setUsers(response.data))
+      .then((response) => {setUsers(response.data);console.log(response.data)})
       .catch((err) => console.log(err));
   };
-
+  
   useEffect(() => {
     handleusers(); // Initial fetch of users
   }, []);
