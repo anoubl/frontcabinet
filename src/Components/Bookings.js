@@ -1,14 +1,14 @@
-import axios from "axios";
+ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Navbar from "./Navbar";
-import { useFormik } from 'formik';
 const Bookings = () => {
   // Obtenir la date d'aujourd'hui au format yyyy-mm-dd
   const today = new Date().toISOString().split("T")[0];
   const [users, setusers] = useState([]);
   const [formData, setFormData] = useState({});
   const [rendez, setRendez] = useState("");
+  const [rendezsuc,setRendezSuc] = useState("");
   useEffect(() => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => {
@@ -16,7 +16,6 @@ const Bookings = () => {
       })
       .catch((error) => console.log(error))
   }, []);
-  const filteredDoctors = users.filter((dctr) => dctr.rôle === 1);
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -46,7 +45,7 @@ const Bookings = () => {
             Plage: formData.Heure,
           }).then((response) => {
             if (response.status === 201) {
-              console.log("rendez vous created succesfuly")
+              setRendezSuc("rendez vous créer succesfuly")
             }
           })
             .catch((error) => console.error(error));
@@ -68,7 +67,12 @@ const Bookings = () => {
       toast.error(rendez);
       setRendez("");
     }
-  }, [rendez])
+    else if(rendezsuc)
+    {
+        toast.success(rendezsuc);
+        setRendezSuc("");
+    }
+  }, [rendez,rendezsuc])
   return (
     <>
       <Navbar>
@@ -139,6 +143,7 @@ const Bookings = () => {
                   id="inputFirstName"
                   name="nom" // Ajout de l'attribut name
                   onChange={handleFormChange}
+                  required
                 />
               </div>
               <div className="col-md-6">
@@ -150,13 +155,16 @@ const Bookings = () => {
                   className="form-control"
                   id="inputLastName"
                   name="prenom" // Ajout de l'attribut name
-                  onChange={handleFormChange} />
+                  onChange={handleFormChange}
+                  required
+                  />
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputEmail" className="form-label">
                   Adresse e-mail :
                 </label>
                 <input
+                required
                   type="email"
                   className="form-control"
                   id="inputEmail"
@@ -179,6 +187,7 @@ const Bookings = () => {
                   Adresse :
                 </label>
                 <input
+                required
                   type="text"
                   className="form-control"
                   id="inputLastName"
@@ -192,6 +201,7 @@ const Bookings = () => {
                   Description des symptômes :
                 </label>
                 <textarea
+                required
                   onChange={handleFormChange}
                   id="inputDescription"
                   className="form-control"
@@ -206,6 +216,7 @@ const Bookings = () => {
                   Date de naissance :
                 </label>
                 <input
+                required
                   onChange={handleFormChange}
                   type="date"
                   className="form-control"
@@ -220,6 +231,7 @@ const Bookings = () => {
                   Date du rendez-vous :
                 </label>
                 <input
+                required
                   onChange={handleFormChange}
                   type="date"
                   className="form-control"
@@ -233,6 +245,7 @@ const Bookings = () => {
                   Plage horaire :
                 </label>
                 <input
+                required
                   onChange={handleFormChange}
                   type="time"
                   className="form-control"
@@ -264,3 +277,4 @@ const Bookings = () => {
 };
 
 export default Bookings;
+
