@@ -10,10 +10,7 @@ import {
 
 const DetailsModal = ({ user, open, onClose }) => {
   return (
-    <Dialog open={open} onClose={onClose}
-    maxWidth="sm"
-    fullWidth>
-      
+    <Dialog open={open} onClose={onClose}>
       <DialogTitle style={{ backgroundColor: '#2196F3', color: '#fff' }}>
         Patient Details
       </DialogTitle>
