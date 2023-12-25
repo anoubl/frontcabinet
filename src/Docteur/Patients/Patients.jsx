@@ -147,9 +147,7 @@ function Patientdoc() {
                     <IconButton color="default" onClick={() => { handleDetails(user) }}>
                       <VisibilityIcon />
                     </IconButton>
-                    <IconButton color="default" onClick={() => { handleDetails(user) }}>
-                      <FolderSharedIcon />
-                    </IconButton>
+                   
                   </TableCell>
                 </TableRow>
               ))}
