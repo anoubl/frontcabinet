@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import Navbar from "./Navbar";
-
+import { useFormik } from 'formik';
 const Bookings = () => {
   // Obtenir la date d'aujourd'hui au format yyyy-mm-dd
   const today = new Date().toISOString().split("T")[0];
   const [users, setusers] = useState([]);
   const [formData, setFormData] = useState({});
+  const [rendez, setRendez] = useState("");
   useEffect(() => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => {
@@ -19,44 +21,69 @@ const Bookings = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const [dctrid,setdctid]=useState(0);
+
   const handleForm = (e) => {
     e.preventDefault();
-    console.log(formData.dctrid)
     // Effectuez votre logique de validation ici si nécessaire
-     console.log(formData)
+    console.log(formData)
     //Envoi de la requête POST
     axios.post("https://anoubl-001-site1.atempurl.com/api/Users", {
-      prenom:formData.prenom,
-      nom:formData.nom,
-      telephone:formData.telephone,
-      email:formData.email,
-      adresse:formData.adresse,
-      DateNaissance:formData.Datenai,
-      rôle:2
-   })
+      prenom: formData.prenom,
+      nom: formData.nom,
+      telephone: formData.telephone,
+      email: formData.email,
+      adresse: formData.adresse,
+      DateNaissance: formData.Datenai,
+      rôle: 2
+    })
       .then((response) => {
-        console.log("Requête réussie", response);
-       //Ajoutez ici le code pour gérer la réponse réussie
+        if (response.status !== 400) {
+          console.log("Requête réussie", response);
+          axios.post("https://anoubl-001-site1.atempurl.com/api/RendezVous", {
+            Patientemail: formData.email,
+            DateRendezVous: formData.Date,
+            Description: formData.Description,
+            Plage: formData.Heure,
+          }).then((response) => {
+            if (response.status === 201) {
+              console.log("rendez vous created succesfuly")
+            }
+          })
+            .catch((error) => console.error(error));
+        }
+        else {
+          console.log("impossible de créer le rendez vous");
+        }
+
       })
       .catch((error) => {
+        setRendez("émail déja exixte");
         console.error("Erreur lors de la requête", error);
-       // Ajoutez ici le code pour gérer les erreurs de requête
+        // Ajoutez ici le code pour gérer les erreurs de requête
       });
-    axios.post("https://anoubl-001-site1.atempurl.com/api/RendezVous",{
-      DocteurId:dctrid,
-      Patientemail:formData.email,
-      DateRendezVous:formData.Date,
-      Description:formData.Description,
-      Plage:formData.Heure,    
-    }).then((response)=>console.log(response))
-    .catch((error)=>console.error(error));
+
   };
+  useEffect(() => {
+    if (rendez) {
+      toast.error(rendez);
+      setRendez("");
+    }
+  }, [rendez])
   return (
     <>
       <Navbar>
-
-
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
         <div
           className="bookings-section"
           data-aos="fade-up"
@@ -98,7 +125,7 @@ const Bookings = () => {
           <h2 className="section-title">Nous ne sommes qu'à un clic de distance.</h2>
           <div className="container">
             <form
-              onSubmit={handleForm} 
+              onSubmit={handleForm}
               method="POST"
               className="row g-3"
             >
@@ -148,19 +175,6 @@ const Bookings = () => {
                   onChange={handleFormChange} />
               </div>
               <div className="col-md-6">
-                <label htmlFor="inputDoctor" className="form-label">
-                  Rendez-vous avec :
-                </label>
-                <select id="inputDoctor" onChange={(e)=>setdctid(e.target.value)} className="form-select" name="dctrid">
-                  {filteredDoctors.map((dctr) => (
-                    <option key={dctr.id} value={dctr.id}>
-                      {dctr.prenom + " " + dctr.nom}
-                    </option>
-                  ))}
-                </select>
-
-              </div>
-              <div className="col-md-6">
                 <label htmlFor="inputAdresse" className="form-label">
                   Adresse :
                 </label>
@@ -172,9 +186,9 @@ const Bookings = () => {
                   onChange={handleFormChange}
                 />
               </div>
-             
-               <div className="col-md-6">
-               <label htmlFor="inputDescription" className="form-label">
+
+              <div className="col-md-6">
+                <label htmlFor="inputDescription" className="form-label">
                   Description des symptômes :
                 </label>
                 <textarea
@@ -186,8 +200,8 @@ const Bookings = () => {
                 >
 
                 </textarea>
-               </div>
-               <div className="col-md-6">
+              </div>
+              <div className="col-md-6">
                 <label htmlFor="inputDate" className="form-label">
                   Date de naissance :
                 </label>
@@ -197,10 +211,10 @@ const Bookings = () => {
                   className="form-control"
                   id="inputDate"
                   name="Datenai" // Ajout de l'attribut name
-                  // Définir la date minimale à aujourd'hui
+                // Définir la date minimale à aujourd'hui
                 />
               </div>
-             
+
               <div className="col-md-6">
                 <label htmlFor="inputDate" className="form-label">
                   Date du rendez-vous :
@@ -224,7 +238,7 @@ const Bookings = () => {
                   className="form-control"
                   id="inputTime"
                   name="Heure" // Ajout de l'attribut name
-                 
+
                 />
               </div>
 

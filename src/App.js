@@ -28,6 +28,7 @@ function App() {
   return (
     <Router>
       <div className="app-wrapper">
+        
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/about" element={<About />} />
