@@ -158,6 +158,13 @@ export default function Dashboard(props) {
               </ListItemIcon>
               <ListItemText primary="Gérer les rendez-vous" />
             </ListItem>
+            <ListItem component={RouterLink} to="/Dossier" button>
+              <ListItemIcon>
+                {/* Remplacez AssignmentIndIcon par l'icône de votre choix, par exemple EventNoteIcon */}
+                <EventNoteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Les dossiers médicaux" />
+            </ListItem>
           </List>
         </Drawer>
 

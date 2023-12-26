@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Dashboard from '../Infermerie/Dashboard';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { Pagination } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import 'react-toastify/dist/ReactToastify.css'; import {
   Table,
   TableBody,
@@ -22,6 +25,7 @@ import DialogUpdate from './DialogUpdate';
 
 
 function Patients() {
+  
   const [messageu,setMessageu]=useState("");
   const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
   const [users, setUsers] = useState([]);
@@ -31,6 +35,9 @@ function Patients() {
   const [userToDelete, setUserToDelete] = useState(null);
   const [message, setMessage] = useState("");
   const filterusers=users.filter((user)=>user.rôle===2 && user.etat===1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Change this according to your preference
+
   const handleusers = () => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => {setUsers(response.data);console.log(response.data)})
@@ -102,6 +109,12 @@ function Patients() {
       setMessageu('');
     }
   }, [message,messageu]);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentUsers = filterusers.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
 
@@ -131,7 +144,7 @@ function Patients() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filterusers.map((user) => (
+              {currentUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>{user.prenom}</TableCell>
                   <TableCell>{user.nom}</TableCell>
@@ -152,7 +165,20 @@ function Patients() {
             </TableBody>
           </Table>
         </TableContainer>
-
+        {/* Pagination */}
+      <div className="d-flex justify-content-center mt-4">
+        <Pagination>
+          {[...Array(Math.ceil(filterusers.length / itemsPerPage)).keys()].map((number) => (
+            <Pagination.Item
+              key={number + 1}
+              active={number + 1 === currentPage}
+              onClick={() => paginate(number + 1)}
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      </div>
         {/* Delete Confirmation Dialog */}
         <DialogDeleteUser
           open={deleteDialogOpen}
