@@ -50,30 +50,30 @@ const NotreEquipe = () => {
         className="custom-carousel"
       >
         <MembreEquipe
-          imageSrc={drali}
-          nom="Dr. Ali Cranta"
-          description={[
-            "MÉDECIN FONDATEUR DE LA CLINIQUE",
-            "MÉDECIN PNEUMOLOGUE SPÉCIALISTE",
-            "COMPÉTENCE EN EXPLORATIONS FONCTIONNELLES RESPIRATOIRES",
-            "COMPÉTENCE EN BRONCHOSCOPIE",
-          ]}
-        />
-        <MembreEquipe
-          imageSrc={branzei}
-          nom="Dr. Fatima Benani"
-          description={[
-            "MÉDECIN PNEUMOLOGUE SPÉCIALISTE",
-            "COMPÉTENCE EN EXPLORATIONS FONCTIONNELLES RESPIRATOIRES",
-            "COMPÉTENCE EN BRONCHOSCOPIE",
-          ]}
-        />
-        <MembreEquipe
           imageSrc={drdruga}
           className="druga"
           nom="Dr. Salma Benani"
           description={["MÉDECIN SPÉCIALIST", "GÉRIATRIE et GÉRONTOLOGIE"]}
         />
+        <MembreEquipe
+          imageSrc={drali}
+          nom="IDE. Ali Cranta"
+          description={[
+            "Infirmier Diplômé d'État",
+            "COMPÉTENCE EN Évaluation des patients",
+            "COMPÉTENCE EN Administration des médicaments",
+          ]}
+        />
+        <MembreEquipe
+          imageSrc={branzei}
+          nom="IDE. Fatima Benani"
+          description={[
+            "Infirmière Diplômé d'État",
+            "COMPÉTENCE EN Évaluation des patients",
+            "COMPÉTENCE EN Administration des médicaments",
+          ]}
+        />
+        
         <MembreEquipe
           imageSrc={popescu}
           nom="Mustapha Tissi"
@@ -81,7 +81,7 @@ const NotreEquipe = () => {
             "CONSEILLÈRE EN THÉRAPIE THETA HEALING",
             "Découvrez-en plus sur la thérapie Theta en suivant le lien -",
             <a
-              href="https://vindecareprinterapiatheta.ro/"
+              href="https://vindecareprinterapiatheta.ro/#"
               target="_blank"
               rel="noopener noreferrer"
             >

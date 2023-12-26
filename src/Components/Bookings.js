@@ -56,7 +56,7 @@ const Bookings = () => {
 
       })
       .catch((error) => {
-        setRendez("émail déja exixte");
+        setRendez("votre adresse e-mail est déjà utilisée");
         console.error("Erreur lors de la requête", error);
         // Ajoutez ici le code pour gérer les erreurs de requête
       });

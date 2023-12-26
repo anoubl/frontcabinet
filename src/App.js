@@ -20,7 +20,11 @@ import Dashboarddoc from "./Docteur/Dashboard";
 import Patientdoc from "./Docteur/Patients/Patients";
 
 import InfermierDoc from "./Docteur/Infermier/Infermier";
+<<<<<<< HEAD
 import Index from "./Infermerie/DossierMedical/Index";
+=======
+import DossierMed from "./Docteur/DossierMed/DossierMed";
+>>>>>>> origin/master
 function App() {
   useEffect(() => {
     AOS.init(); // Initialize AOS
@@ -47,7 +51,14 @@ function App() {
           <Route path="/manage-rendezvous" element={<RendezVous/>} />
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
+<<<<<<< HEAD
           <Route path="/Dossier" element={<Index/>} />
+=======
+          <Route path="/Dossier-med" element={<DossierMed/>}/>
+         
+
+
+>>>>>>> origin/master
         </Routes>
    
       </div>

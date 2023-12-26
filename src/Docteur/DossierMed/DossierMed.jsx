@@ -16,13 +16,13 @@ import 'react-toastify/dist/ReactToastify.css'; import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import DetailsModal from './DetailsModal';
-import DialogDeleteUser from './DialogDeleteUser'; // Import the DialogDeleteUser component
-import DialogUpdate from './DialogUpdate';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
+import DetailsModal from './DetailsModalMed';
+import DialogDeleteUser from './DialogDeleteInfMed'; // Import the DialogDeleteUser component
+import DialogUpdate from './DialogUpdateinfMed';
 
 
-function Patientdoc() {
+function DossierMed() {
   const [messageu,setMessageu]=useState("");
   const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
   const [users, setUsers] = useState([]);
@@ -31,7 +31,7 @@ function Patientdoc() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [message, setMessage] = useState("");
-  const filterusers=users.filter((user)=>user.rôle===2);
+  const filterusers=users.filter((user)=>user.rôle===0);
   const handleusers = () => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => setUsers(response.data))
@@ -120,7 +120,7 @@ function Patientdoc() {
           theme="light"
         />
         <div className="mx-auto">
-          <h4 className="text text-primary">Patients</h4>
+          <h4 className="text text-primary">Infermier</h4>
         </div>        <TableContainer component={Paper}>
           <Table>
             <TableHead>
@@ -138,16 +138,10 @@ function Patientdoc() {
                   <TableCell>{user.nom}</TableCell>
                   <TableCell>{user.telephone}</TableCell>
                   <TableCell>
-                    <IconButton color="primary" onClick={() => handleEdit(user)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton color="secondary" onClick={() => handleDelete(user.id, user.nom)}>
-                      <DeleteIcon />
-                    </IconButton>
-                    <IconButton color="default" onClick={() => { handleDetails(user) }}>
-                      <VisibilityIcon />
-                    </IconButton>
                    
+                    <IconButton color="default" onClick={() => { handleDetails(user) }}>
+                      <FolderSharedIcon />
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               ))}
@@ -180,4 +174,4 @@ function Patientdoc() {
   );
 }
 
-export default Patientdoc;
+export default DossierMed;

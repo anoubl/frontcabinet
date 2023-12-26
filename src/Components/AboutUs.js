@@ -22,7 +22,7 @@ const APropos = () => {
               sain.
             </p>
             <p className="about-p">
-              Au centre médical ALI CRANTA, primordial dans la philosophie de
+              Au centre médical Elbachawiyat, primordial dans la philosophie de
               notre clinique, est la récupération de la santé du patient et
               l'assurance de sa vitalité par la prévention et l'adoption d'un
               mode de vie sain et équilibré physiquement et émotionnellement.
