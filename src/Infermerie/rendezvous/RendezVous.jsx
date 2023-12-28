@@ -77,6 +77,9 @@ function RendezVous() {
   // Get the current page's items
   const currentItems = appointments.slice(indexOfFirstItem, indexOfLastItem);
 
+
+
+  
   return (
     <>
       <Dashboard>
