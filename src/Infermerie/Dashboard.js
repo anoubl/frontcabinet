@@ -176,7 +176,9 @@ export default function Dashboard(props) {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
+              <div className='container'>
               {props.children}
+                </div>
             </Grid>
           </Container>
         </Box>
