@@ -616,3 +616,12 @@ p {
     font-size: 16px;
   }
 }
+/* App.css */
+.body-with-background {
+  background-image: url('./assets/img/back.jpeg');
+  /* Add other background styles if needed */
+}
+
+.body-no-background {
+  background: none;
+}

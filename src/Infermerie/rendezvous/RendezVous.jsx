@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import {
   Table,
   TableBody,
@@ -16,6 +16,7 @@ import Dashboard from '../Dashboard';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast, ToastContainer } from 'react-toastify';
+import emailjs from '@emailjs/browser';
 
 function RendezVous() {
   const [appointments, setAppointments] = useState([]);
@@ -26,7 +27,7 @@ function RendezVous() {
     axios
       .get('https://anoubl-001-site1.atempurl.com/api/RendezVous')
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         setAppointments(response.data);
       })
       .catch((err) => console.log(err));
@@ -58,6 +59,7 @@ function RendezVous() {
         {
            handleDeleteAppointment(id);
            toast.success("rendez vous effectuer avec succés merci !");
+           //email 
            handlerendezvous();
         }
         else
@@ -76,7 +78,7 @@ function RendezVous() {
   const currentItems = appointments.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div>
+    <>
       <Dashboard>
       <ToastContainer
         position="top-center"
@@ -90,10 +92,9 @@ function RendezVous() {
         pauseOnHover
         theme="light"
       />
-        <IconButton onClick={handleAddAppointment}>
-          <AddIcon color="primary" />
-        </IconButton>
-        <TableContainer component={Paper}>
+      
+       <button className='btn btn-primary'>Ajouter un rendez-vous</button>
+        <TableContainer component={Paper} className='mt-2'>
           <Table responsive="sm" striped bordered hover>
             <TableHead>
               <TableRow>
@@ -124,8 +125,9 @@ function RendezVous() {
             </TableBody>
           </Table>
         </TableContainer>
+        
         {/* Pagination */}
-        <div className="d-flex justify-content-center m-2 my-8">
+        <div className="d-flex mt-4 justify-content-center">
           <button
             className="btn btn-outline-primary"
             onClick={() => setCurrentPage(currentPage - 1)}
@@ -142,8 +144,10 @@ function RendezVous() {
             Next Page
           </button>
         </div>
+   
       </Dashboard>
-    </div>
+     </>
+    
   );
 }
 
