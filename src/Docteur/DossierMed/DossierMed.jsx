@@ -31,7 +31,7 @@ function DossierMed() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [message, setMessage] = useState("");
-  const filterusers=users.filter((user)=>user.rôle===0);
+  const filterusers=users.filter((user)=>user.rôle===2);
   const handleusers = () => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => setUsers(response.data))
@@ -120,7 +120,7 @@ function DossierMed() {
           theme="light"
         />
         <div className="mx-auto">
-          <h4 className="text text-primary">Infermier</h4>
+          <h4 className="text text-primary">Patients</h4>
         </div>        <TableContainer component={Paper}>
           <Table>
             <TableHead>
