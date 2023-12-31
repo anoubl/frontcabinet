@@ -57,9 +57,7 @@ function RendezVous() {
     .then((response)=>{
         if(response.status===200)
         {
-           handleDeleteAppointment(id);
            toast.success("rendez vous effectuer avec succés merci !");
-           //email 
            handlerendezvous();
         }
         else
@@ -109,7 +107,7 @@ function RendezVous() {
             <TableBody>
               {currentItems.map((appointment) => (
                 <TableRow key={appointment.id}>
-                  <TableCell>{appointment.patientemail}</TableCell>
+                  <TableCell>{appointment.patientName}</TableCell>
                   <TableCell>{appointment.daterendezvous}</TableCell>
                   <TableCell>
                     {!appointment.validated && (
