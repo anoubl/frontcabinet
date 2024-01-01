@@ -53,7 +53,6 @@ function App() {
           <Route path="/Profille" element={<Profille/>} />
           <Route path="/Dossier-Med/:userid" element={<Dosser/>} />
         </Routes>
-   
       </div>
     </Router>
   );
