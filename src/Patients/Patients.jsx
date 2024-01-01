@@ -23,6 +23,7 @@ import DetailsModal from './DetailsModal';
 import DialogDeleteUser from './DialogDeleteUser'; // Import the DialogDeleteUser component
 import DialogUpdate from './DialogUpdate';
 import FolderIcon from '@mui/icons-material/Folder';
+import DialogDossMed from './DossierMedicalModal';
 function Patients() {
   const [messageu, setMessageu] = useState("");
   const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
@@ -36,6 +37,8 @@ function Patients() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // Change this according to your preference
   const [search, setSearch] = useState("");
+  const [dossMedDialogOpen, setDossMedDialogOpen] = useState(false);
+  const [selectedUserForDossMed, setSelectedUserForDossMed] = useState(null);
   const handleusers = () => {
 
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
@@ -60,6 +63,11 @@ function Patients() {
   const handleEdit = (user) => {
     setSelectedUser(user);
     setUpdateDialogOpen(true);
+  };
+  
+  const handleDossMed = (user) => {
+    setSelectedUserForDossMed(user);
+    setDossMedDialogOpen(true);
   };
 
   const handleCloseUpdateDialog = () => {
@@ -184,7 +192,7 @@ function Patients() {
                     <IconButton color="success" onClick={() => { handleDetails(user) }}>
                       <VisibilityIcon />
                     </IconButton>
-                    <IconButton color="warning" onClick={() => { handleDetails(user) }}>
+                    <IconButton color="warning" onClick={() => { DialogDossMed(user) }}>
                      <FolderIcon/>
                     </IconButton>
                   </TableCell>
@@ -222,6 +230,12 @@ function Patients() {
           open={openModal}
           onClose={handleCloseModal}
         />
+        {/* Medical Dossier Dialog */}
+      <DialogDossMed
+        open={dossMedDialogOpen}
+        onClose={() => setDossMedDialogOpen(false)}
+        user={selectedUserForDossMed}
+      />
         <DialogUpdate
           open={updateDialogOpen}
           onClose={handleCloseUpdateDialog}
