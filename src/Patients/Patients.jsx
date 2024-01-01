@@ -65,7 +65,7 @@ function Patients() {
     setSelectedUser(user);
     setUpdateDialogOpen(true);
   };
-  
+
 
   const handleCloseUpdateDialog = () => {
     setUpdateDialogOpen(false);
@@ -124,7 +124,7 @@ function Patients() {
       handleusers();
     }
   }
-  const handleReset=()=>{
+  const handleReset = () => {
     setSearch('');
     handleusers();
   }
@@ -145,7 +145,7 @@ function Patients() {
         />
         <div className='row mb-2'>
           <div className='col-md-8'>
-          <input
+            <input
               type="text"
               className="form-control active-pink-2"
               placeholder="Trouver un patient..."
@@ -155,14 +155,14 @@ function Patients() {
             />
           </div>
           <div className='col-md-4 d-flex '>
-          <button onClick={handleSearch} className='btn btn-primary ' style={{ marginRight: '10px' }}>Search</button>
-          <button onClick={handleReset} className='btn btn-danger'>Reset</button>
+            <button onClick={handleSearch} className='btn btn-primary ' style={{ marginRight: '10px' }}>Search</button>
+            <button onClick={handleReset} className='btn btn-danger'>Reset</button>
           </div>
         </div>
-           
-         
-      
-        <TableContainer  component={Paper}>
+
+
+
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -188,10 +188,12 @@ function Patients() {
                     <IconButton color="success" onClick={() => { handleDetails(user) }}>
                       <VisibilityIcon />
                     </IconButton>
-                    <Link to="/Dossier-med"> <IconButton color="warning" >
-                     <FolderIcon/>
-                    </IconButton></Link>
-                   
+                    <Link to={`/Dossier-Med/${user.id}`}>
+                      <IconButton color="warning">
+                        <FolderIcon />
+                      </IconButton>
+                    </Link>
+
                   </TableCell>
                 </TableRow>
               ))}
@@ -212,7 +214,7 @@ function Patients() {
             ))}
           </Pagination>
         </div>
-        
+
 
         {/* Delete Confirmation Dialog */}
         <DialogDeleteUser
@@ -228,7 +230,7 @@ function Patients() {
           open={openModal}
           onClose={handleCloseModal}
         />
-        
+
         <DialogUpdate
           open={updateDialogOpen}
           onClose={handleCloseUpdateDialog}
@@ -236,17 +238,17 @@ function Patients() {
           user={selectedUser}
         />
         {openModal && (
-        <DialogUpdate
-          open={updateDialogOpen}
-          onClose={handleCloseUpdateDialog}
-          onUpdate={handleUpdate}
-          user={selectedUser}
-        />
-      )}
+          <DialogUpdate
+            open={updateDialogOpen}
+            onClose={handleCloseUpdateDialog}
+            onUpdate={handleUpdate}
+            user={selectedUser}
+          />
+        )}
 
-      {selectedUserId && (
-        <Dosser user={selectedUser} />
-      )}
+        {selectedUserId && (
+          <Dosser user={selectedUser} />
+        )}
       </Dashboard>
     </div>
   );
