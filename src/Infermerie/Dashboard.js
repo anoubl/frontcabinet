@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link, Link as RouterLink, useNavigate } from 'react-router-dom';
 import EventNoteIcon from '@mui/icons-material/EventNote';// ... Autres importations ...
 
 import ListItem from '@mui/material/ListItem';
@@ -24,8 +24,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -118,10 +117,10 @@ export default function Dashboard(props) {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+            <IconButton >
+              <Link to="/Profille">
+              <AccountCircleIcon color='dark'/>
+              </Link>
             </IconButton>
             <IconButton color="inherit" onClick={handleLogout} >
               <ExitToAppIcon />
