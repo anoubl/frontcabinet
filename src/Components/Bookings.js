@@ -45,7 +45,7 @@ const Bookings = () => {
             Plage: formData.Heure,
           }).then((response) => {
             if (response.status === 201) {
-              setRendezSuc("rendez vous créer succesfuly")
+              setRendezSuc("rendez vous créer avec succés.")
             }
           })
             .catch((error) => console.error(error));

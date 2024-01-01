@@ -1,5 +1,5 @@
 // Patients.js
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dashboard from '../Infermerie/Dashboard';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
