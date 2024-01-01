@@ -52,10 +52,6 @@ function App() {
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
           <Route path="/Profille" element={<Profille/>} />
           <Route path="/Dossier-Med/:userid" element={<Dosser/>} />
-
-
-         
-
         </Routes>
    
       </div>
