@@ -7,7 +7,7 @@ function Profille() {
     const [userData,setUserData] = useState([]);
     const userId=localStorage.getItem("userid");
     axios.get(`https://anoubl-001-site1.atempurl.com/api/Users/${userId}`)
-    .then((response)=>{console.log(response.data) ; })
+    .then((response)=>{console.info(response.data) ; })
     .catch((error) => console.error(error))
     return (
         <>
