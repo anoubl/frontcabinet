@@ -1,14 +1,25 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Dashboard from '../Dashboard'
 
 function Profille() {
     const [userData,setUserData] = useState([]);
     const userId=localStorage.getItem("userid");
-    axios.get(`https://anoubl-001-site1.atempurl.com/api/Users/${userId}`)
-    .then((response)=>{console.info(response.data) ; })
-    .catch((error) => console.error(error))
+    const handleProfile = () => {
+        axios.get(`https://anoubl-001-site1.atempurl.com/api/Users/${userId}`)
+          .then((response) => {
+            setUserData(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching user data:', error);
+          });
+      }
+   useEffect(()=>{
+    handleProfile();
+      const {prenom , nom , telephone , email , password } =userData
+        console.log(userData.prenom)
+   },[])
     return (
         <>
             <Dashboard>
