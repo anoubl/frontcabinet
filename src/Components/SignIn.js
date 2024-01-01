@@ -25,9 +25,8 @@ export default function SignIn() {
 
       if (response.data) {
         console.log("User is valid");
-        // Assuming response.data contains the user role as 'Role'
         const userRole = response.data.rôle;
-
+        localStorage.setItem("userid" , response.data.id);
         // Redirect based on user role
         if (userRole === 1) {
           navigate('/Dashboard-doc');
