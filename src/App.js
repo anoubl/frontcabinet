@@ -20,6 +20,7 @@ import Dashboarddoc from "./Docteur/Dashboard";
 import Patientdoc from "./Docteur/Patients/Patients";
 
 import InfermierDoc from "./Docteur/Infermier/Infermier";
+import Dosser from "./Patients/Dossier medical/Dosser";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/manage-rendezvous" element={<RendezVous/>} />
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
+          <Route path="/Dossier-med" element={<Dosser/>} />
           
 
          
