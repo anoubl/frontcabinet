@@ -48,6 +48,7 @@ function App() {
           <Route path="/manage-rendezvous" element={<RendezVous/>} />
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
+          
 
          
 
