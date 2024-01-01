@@ -51,6 +51,7 @@ function App() {
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
           <Route path="/Profille" element={<Profille/>} />
+          <Route path="/Dossier-Med/:userid" element={<Dosser/>} />
 
 
          

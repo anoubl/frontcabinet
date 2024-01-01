@@ -241,4 +241,4 @@ function Profille() {
     )
 }
 
-export default Profille
+export default Profille;
