@@ -23,7 +23,9 @@ import DetailsModal from './DetailsModal';
 import DialogDeleteUser from './DialogDeleteUser'; // Import the DialogDeleteUser component
 import DialogUpdate from './DialogUpdate';
 import FolderIcon from '@mui/icons-material/Folder';
-import DialogDossMed from './DossierMedicalModal';
+import { Link } from 'react-router-dom';
+import Dosser from './Dossier medical/Dosser';
+
 function Patients() {
   const [messageu, setMessageu] = useState("");
   const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
@@ -37,8 +39,7 @@ function Patients() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // Change this according to your preference
   const [search, setSearch] = useState("");
-  const [dossMedDialogOpen, setDossMedDialogOpen] = useState(false);
-  const [selectedUserForDossMed, setSelectedUserForDossMed] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const handleusers = () => {
 
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
@@ -65,10 +66,6 @@ function Patients() {
     setUpdateDialogOpen(true);
   };
   
-  const handleDossMed = (user) => {
-    setSelectedUserForDossMed(user);
-    setDossMedDialogOpen(true);
-  };
 
   const handleCloseUpdateDialog = () => {
     setUpdateDialogOpen(false);
@@ -95,8 +92,7 @@ function Patients() {
   };
 
   const handleDetails = (user) => {
-    // Display details in the modal
-    setSelectedUser(user);
+    setSelectedUserId(user.id);
     setOpenModal(true);
   };
 
@@ -192,9 +188,10 @@ function Patients() {
                     <IconButton color="success" onClick={() => { handleDetails(user) }}>
                       <VisibilityIcon />
                     </IconButton>
-                    <IconButton color="warning" onClick={() => { DialogDossMed(user) }}>
+                    <Link to="/Dossier-med"> <IconButton color="warning" >
                      <FolderIcon/>
-                    </IconButton>
+                    </IconButton></Link>
+                   
                   </TableCell>
                 </TableRow>
               ))}
@@ -215,6 +212,7 @@ function Patients() {
             ))}
           </Pagination>
         </div>
+        
 
         {/* Delete Confirmation Dialog */}
         <DialogDeleteUser
@@ -230,18 +228,25 @@ function Patients() {
           open={openModal}
           onClose={handleCloseModal}
         />
-        {/* Medical Dossier Dialog */}
-      <DialogDossMed
-        open={dossMedDialogOpen}
-        onClose={() => setDossMedDialogOpen(false)}
-        user={selectedUserForDossMed}
-      />
+        
         <DialogUpdate
           open={updateDialogOpen}
           onClose={handleCloseUpdateDialog}
           onUpdate={handleUpdate}
           user={selectedUser}
         />
+        {openModal && (
+        <DialogUpdate
+          open={updateDialogOpen}
+          onClose={handleCloseUpdateDialog}
+          onUpdate={handleUpdate}
+          user={selectedUser}
+        />
+      )}
+
+      {selectedUserId && (
+        <Dosser user={selectedUser} />
+      )}
       </Dashboard>
     </div>
   );
