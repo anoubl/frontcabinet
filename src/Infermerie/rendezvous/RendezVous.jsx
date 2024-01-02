@@ -20,11 +20,11 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } 
 import EditIcon from '@mui/icons-material/Edit';
 import PatientInfoDialog from './DialogueInfoPatient';
 import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
+import { sendEmails } from '../../Email/Email';
 function RendezVous() {
   const [appointments, setAppointments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(2);
-  const [validateUser, setValidateUser] = useState("");
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editedAppointment, setEditedAppointment] = useState({
     id: null,
@@ -46,12 +46,6 @@ function RendezVous() {
     // Call the handlerendezvous function when the component mounts
     handlerendezvous();
   }, []);
-
-
-  const handleAddAppointment = () => {
-
-  };
-
   const handleDeleteAppointment = (id) => {
     axios.delete(`https://anoubl-001-site1.atempurl.com/api/RendezVous/${id}`)
       .then((response) => {
@@ -61,13 +55,14 @@ function RendezVous() {
       .catch((error) => console.log(error));
 
   };
-  const handleValidateAppointment = (email, id) => {
+  const handleValidateAppointment = (email, name, date) => {
     axios.put(`https://anoubl-001-site1.atempurl.com/api/Users/validate/${email}`)
       .then((response) => {
         if (response.status === 200) {
           axios.put(`https://anoubl-001-site1.atempurl.com/api/RendezVous/validate/${email}`)
             .then((response) => {
               if (response.status === 200) {
+                sendEmails(email,name,date.substring(0,10));
                 handlerendezvous();
                 toast.success("rendez vous effectuer avec succés merci !");
               }
@@ -157,7 +152,6 @@ function RendezVous() {
           theme="light"
         />
 
-        <button className='btn btn-primary'>Ajouter un rendez-vous</button>
         <p className='d-flex mt-4 justify-content-center text-warning'>La liste des rendez-vous (en cours)</p>
         <TableContainer component={Paper} className='mt-2'>
           <Table responsive="sm" striped bordered hover>
@@ -182,7 +176,7 @@ function RendezVous() {
                   <TableCell>
                     {!appointment.validated && (
                       <>
-                        <IconButton onClick={() => handleValidateAppointment(appointment.patientemail, appointment.id)}>
+                        <IconButton onClick={() => handleValidateAppointment(appointment.patientemail, appointment.patientName, appointment.daterendezvous)}>
                           <CheckIcon color="primary" />
                         </IconButton>
                         <IconButton onClick={() => handleDeleteAppointment(appointment.id)}>
@@ -208,7 +202,7 @@ function RendezVous() {
         <div className="d-flex mt-4 justify-content-center">
           <button
             className="btn btn-outline-primary"
-            onClick={() => setCurrentPage(currentPage - 1)}
+            onClick={() => setCurrentPage(prevPage => prevPage - 1)}
             disabled={currentPage === 1}
           >
             Previous Page
@@ -216,13 +210,14 @@ function RendezVous() {
           <span className="mx-2">{`Page ${currentPage}`}</span>
           <button
             className="btn btn-outline-primary"
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={() => setCurrentPage(prevPage => prevPage + 1)}
             disabled={indexOfLastItem >= appointments.length}
           >
             Next Page
           </button>
         </div>
-    <p className='text-center mt-2  text-success'>La liste des rendez-vous</p>
+
+        <p className='text-center mt-2  text-success'>La liste des rendez-vous</p>
         {/*  deuxieme table  */}
         <TableContainer component={Paper} className='mt-4'>
           <Table responsive="sm" striped bordered hover>
@@ -236,7 +231,7 @@ function RendezVous() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {currentItems.filter((rendez) => rendez.etat === 1).map((appointment) => (
+              {appointments.filter((rendez) => rendez.etat === 1).map((appointment) => (
                 <TableRow key={appointment.id}>
                   <TableCell>{appointment.patientName}</TableCell>
                   <TableCell>{appointment.description}</TableCell>
@@ -264,24 +259,7 @@ function RendezVous() {
             </TableBody>
           </Table>
         </TableContainer>
-            {/* Pagination */}
-            <div className="d-flex mt-4 justify-content-center">
-          <button
-            className="btn btn-outline-primary"
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous Page
-          </button>
-          <span className="mx-2">{`Page ${currentPage}`}</span>
-          <button
-            className="btn btn-outline-primary"
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={indexOfLastItem >= appointments.length}
-          >
-            Next Page
-          </button>
-        </div>
+
         {/* dialogue de validation */}
         <Dialog open={editDialogOpen} onClose={handleCloseEditDialog}>
           <DialogTitle >Edit Rendez-Vous</DialogTitle>
@@ -320,10 +298,10 @@ function RendezVous() {
           </DialogActions>
         </Dialog>
         <PatientInfoDialog
-        open={infoDialogOpen}
-        onClose={() => setInfoDialogOpen(false)}
-        patient={selectedPatient}
-      />
+          open={infoDialogOpen}
+          onClose={() => setInfoDialogOpen(false)}
+          patient={selectedPatient}
+        />
       </Dashboard>
     </>
 
