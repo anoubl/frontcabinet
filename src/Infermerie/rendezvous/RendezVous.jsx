@@ -55,14 +55,14 @@ function RendezVous() {
       .catch((error) => console.log(error));
 
   };
-  const handleValidateAppointment = (email, name, date) => {
+  const handleValidateAppointment = (email, name, date,heure) => {
     axios.put(`https://anoubl-001-site1.atempurl.com/api/Users/validate/${email}`)
       .then((response) => {
         if (response.status === 200) {
           axios.put(`https://anoubl-001-site1.atempurl.com/api/RendezVous/validate/${email}`)
             .then((response) => {
               if (response.status === 200) {
-                sendEmails(email,name,date.substring(0,10));
+                sendEmails(email,name,date.substring(0,10),heure);
                 handlerendezvous();
                 toast.success("rendez vous effectuer avec succés merci !");
               }
@@ -176,7 +176,7 @@ function RendezVous() {
                   <TableCell>
                     {!appointment.validated && (
                       <>
-                        <IconButton onClick={() => handleValidateAppointment(appointment.patientemail, appointment.patientName, appointment.daterendezvous)}>
+                        <IconButton onClick={() => handleValidateAppointment(appointment.patientemail, appointment.patientName, appointment.daterendezvous,appointment.plage)}>
                           <CheckIcon color="primary" />
                         </IconButton>
                         <IconButton onClick={() => handleDeleteAppointment(appointment.id)}>

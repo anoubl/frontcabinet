@@ -1,6 +1,6 @@
 import emailjs from '@emailjs/browser';
 
-export async function sendEmails(patientEmail, toName, appointmentDate) {
+export async function sendEmails(patientEmail, toName, appointmentDate,heure) {
     try {
         // Initialize EmailJS with the correct user ID
         await emailjs.init('6u_vSTaBPGV6cJjC0');
@@ -9,13 +9,15 @@ export async function sendEmails(patientEmail, toName, appointmentDate) {
         const patientTemplateParams = {
             patient_email: patientEmail,
             to_name: toName,
-            date_du_rendez_vous: appointmentDate
+            date_du_rendez_vous: appointmentDate,
+            heure_du_rendez_vous:heure
         };
 
         // Template for the doctor
         const doctorTemplateParams = {
             patient_name: toName,
-            appointment_date: appointmentDate
+            appointment_date: appointmentDate,
+            heure_du_rendez_vous:heure
         };
 
         // Send email for the patient
