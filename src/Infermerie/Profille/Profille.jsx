@@ -39,7 +39,9 @@ function Profille() {
                                     <>
                                         {user.rôle === 0 ? (
                                             <img src="./Images/infirmiere.jpg" alt="Profile" class="rounded-circle" />
-                                        ) : null}
+                                        ) : (
+                                            <img src="./Images/docteur.jpg" style={{width:"20rem"}} alt="Profile" class="rounded-circle" />
+                                        )}
                                         <h2>{user.prenom + " " + user.nom}</h2>
                                         <h3>{user.specialite}</h3>
                                     </>

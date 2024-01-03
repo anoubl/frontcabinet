@@ -15,8 +15,9 @@ import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link, Link as RouterLink, useNavigate } from 'react-router-dom';
 import EventNoteIcon from '@mui/icons-material/EventNote';// ... Autres importations ...
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -118,10 +119,10 @@ export default function Dashboarddoc(props) {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+            <IconButton >
+              <Link to="/Profille">
+              <AccountCircleIcon color='dark'/>
+              </Link>
             </IconButton>
             <IconButton color="inherit" onClick={handleLogout} >
               <ExitToAppIcon />
