@@ -83,7 +83,7 @@ export default function Dashboard(props) {
     setOpen(!open);
   };
   const handleLogout = () => {
-    // Ajoutez le code de déconnexion ici, par exemple, redirection vers la page de connexion.
+    localStorage.clear();
     navigate('/SignIn'); // Utilisez navigate pour rediriger vers la page de connexion.
   };
   return (

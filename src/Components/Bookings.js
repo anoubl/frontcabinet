@@ -1,14 +1,43 @@
- import axios from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Navbar from "./Navbar";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import fr from 'date-fns/locale/fr';
+registerLocale('fr', fr);
+setDefaultLocale('fr');
 const Bookings = () => {
   // Obtenir la date d'aujourd'hui au format yyyy-mm-dd
   const today = new Date().toISOString().split("T")[0];
   const [users, setusers] = useState([]);
   const [formData, setFormData] = useState({});
   const [rendez, setRendez] = useState("");
-  const [rendezsuc,setRendezSuc] = useState("");
+  const [rendezsuc, setRendezSuc] = useState("");
+
+  //date
+  const [selectedDate, setSelectedDate] = useState(null);
+  const todayd = new Date();
+  const tomorrow = new Date(todayd);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const isWeekend = (date) => {
+    const day = date.getDay();
+    return day === 0 || day === 6; // Sunday (0) and Saturday (6)
+  };
+  const formatDate = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Les mois commencent à partir de zéro, donc on ajoute 1
+    const year = date.getFullYear();
+  
+    // Ajouter un zéro devant le jour ou le mois si nécessaire
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
+  
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  };
+
   useEffect(() => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => {
@@ -24,7 +53,7 @@ const Bookings = () => {
   const handleForm = (e) => {
     e.preventDefault();
     // Effectuez votre logique de validation ici si nécessaire
-    console.log(formData)
+    const dateRendez= formatDate(selectedDate);
     //Envoi de la requête POST
     axios.post("https://anoubl-001-site1.atempurl.com/api/Users", {
       prenom: formData.prenom,
@@ -40,7 +69,7 @@ const Bookings = () => {
           console.log("Requête réussie", response);
           axios.post("https://anoubl-001-site1.atempurl.com/api/RendezVous", {
             Patientemail: formData.email,
-            DateRendezVous: formData.Date,
+            DateRendezVous: dateRendez,
             Description: formData.Description,
             Plage: formData.Heure,
           }).then((response) => {
@@ -67,27 +96,26 @@ const Bookings = () => {
       toast.error(rendez);
       setRendez("");
     }
-    else if(rendezsuc)
-    {
-        toast.success(rendezsuc);
-        setRendezSuc("");
+    else if (rendezsuc) {
+      toast.success(rendezsuc);
+      setRendezSuc("");
     }
-  }, [rendez,rendezsuc])
+  }, [rendez, rendezsuc])
   return (
     <>
       <Navbar>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div
           className="bookings-section"
           data-aos="fade-up"
@@ -157,14 +185,14 @@ const Bookings = () => {
                   name="prenom" // Ajout de l'attribut name
                   onChange={handleFormChange}
                   required
-                  />
+                />
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputEmail" className="form-label">
                   Adresse e-mail :
                 </label>
                 <input
-                required
+                  required
                   type="email"
                   className="form-control"
                   id="inputEmail"
@@ -187,7 +215,7 @@ const Bookings = () => {
                   Adresse :
                 </label>
                 <input
-                required
+                  required
                   type="text"
                   className="form-control"
                   id="inputLastName"
@@ -201,7 +229,7 @@ const Bookings = () => {
                   Description des symptômes :
                 </label>
                 <textarea
-                required
+                  required
                   onChange={handleFormChange}
                   id="inputDescription"
                   className="form-control"
@@ -216,7 +244,7 @@ const Bookings = () => {
                   Date de naissance :
                 </label>
                 <input
-                required
+                  required
                   onChange={handleFormChange}
                   type="date"
                   className="form-control"
@@ -225,19 +253,17 @@ const Bookings = () => {
                 // Définir la date minimale à aujourd'hui
                 />
               </div>
-
               <div className="col-md-6">
                 <label htmlFor="inputDate" className="form-label">
                   Date du rendez-vous :
                 </label>
-                <input
-                required
-                  onChange={handleFormChange}
-                  type="date"
-                  className="form-control"
-                  id="inputDate"
-                  name="Date" // Ajout de l'attribut name
-                  min={today} // Définir la date minimale à aujourd'hui
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date) => setSelectedDate(date)}
+                  minDate={tomorrow}
+                  locale="fr"
+                  name="Date"
+                  dateFormat="yyyy-MM-dd"
                 />
               </div>
               <div className="col-md-6">
@@ -245,7 +271,7 @@ const Bookings = () => {
                   Plage horaire :
                 </label>
                 <input
-                required
+                  required
                   onChange={handleFormChange}
                   type="time"
                   className="form-control"

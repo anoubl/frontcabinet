@@ -119,12 +119,12 @@ function InfermierDoc() {
           theme="light"
         />
         <div className="mx-auto">
-          <h4 className="text text-primary">Infermier</h4>
+          <h4 className="text text-primary">liste des infirmières</h4>
         </div>        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Prenom</TableCell>
+                <TableCell>Prénom</TableCell>
                 <TableCell>Nom</TableCell>
                 <TableCell>Telephone</TableCell>
                 <TableCell>Actions</TableCell>

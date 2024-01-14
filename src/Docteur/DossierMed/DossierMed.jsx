@@ -1,176 +1,103 @@
-// Patients.js
-import React, { useEffect, useRef, useState } from 'react';
-import Dashboard from '../Dashboard';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
-} from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import FolderSharedIcon from '@mui/icons-material/FolderShared';
-import DetailsModal from './DetailsModalMed';
-import DialogDeleteUser from './DialogDeleteInfMed'; // Import the DialogDeleteUser component
-import DialogUpdate from './DialogUpdateinfMed';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Dashboard from '../../Docteur/Dashboard';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './Slider.css'
+import { Icon } from '@iconify/react';
 
-
+import PrescriptionTemplate from '../../Ordonance/PrescriptionTemplate';
+import AddConsultation from './AddConsultation';
 function DossierMed() {
-  const [messageu,setMessageu]=useState("");
-  const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [userToDelete, setUserToDelete] = useState(null);
-  const [message, setMessage] = useState("");
-  const filterusers=users.filter((user)=>user.rôle===2);
-  const handleusers = () => {
-    axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
-      .then((response) => setUsers(response.data))
-      .catch((err) => console.log(err));
+  const [dossierInfo, setDossierInfo] = useState({});
+  const [consultations, setConsultations] = useState([]);
+  const { userid } = useParams();
+  const [showAddConsultation, setShowAddConsultation] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [patient,setPatient]=useState();
+
+  const handleOpenDialog = () => {
+    setDialogOpen(true);
   };
 
-  useEffect(() => {
-    handleusers(); // Initial fetch of users
-  }, []);
-  const handleUpdate = (updatedUser) => {
-    const id = updatedUser.id; // Assuming selectedUser is available
-    axios.put(`https://anoubl-001-site1.atempurl.com/api/Users/${id}`, updatedUser)
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+
+  const handleDossiers = () => {
+    axios.get(`https://anoubl-001-site1.atempurl.com/api/Dossiers/${userid}`)
       .then((response) => {
-        if (response.status === 204) {
-          handleusers();
-          setMessageu("Les détails du patient ont été mis à jour avec succès");
-        }
+        console.log(response)
+         setPatient(response.data[0].patientInfo)
+        console.log(response.data[0].consultations)
+        setConsultations(response.data[0].consultations)
+        setDossierInfo(response.data[0].dossierInformation);
+        console.info(response.data[0].dossierInformation);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.log(error));
   };
-
-  const handleEdit = (user) => {
-    setSelectedUser(user);
-    setUpdateDialogOpen(true);
-  };
-
-  const handleCloseUpdateDialog = () => {
-    setUpdateDialogOpen(false);
-  };
-  const handleDelete = (userId, userName) => {
-    // Open the delete confirmation dialog
-    setUserToDelete({ id: userId, name: userName });
-    setDeleteDialogOpen(true);
-  };
-
-  const handleDeleteConfirmed = () => {
-    const id = userToDelete.id;
-    // Add logic for handling delete action
-    axios.delete(`https://anoubl-001-site1.atempurl.com/api/Users/${id}`)
-      .then((response) => {
-        if (response.status === 200) {
-          handleusers();
-          setMessage("le patient supprimé avec succés");
-        }
-      })
-      .catch((error) => console.error(error))
-    // Close the delete confirmation dialog
-    setDeleteDialogOpen(false);
-  };
-
-  const handleDetails = (user) => {
-    // Display details in the modal
-    setSelectedUser(user);
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    // Close the modal
-    setOpenModal(false);
-  };
+const dossierId=dossierInfo.dossierId;
   useEffect(() => {
-    if (message) {
-      toast.error(message);
-      setMessage('');
-    }
-    else if(messageu)
-    {
-      toast.success(messageu);
-      setMessageu('');
-    }
-  }, [message,messageu]);
+    handleDossiers();
+  }, [userid]);
+
   return (
-    <div>
-
+    <>
       <Dashboard>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <div className="mx-auto">
-          <h4 className="text text-primary">Patients</h4>
-        </div>        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Prenom</TableCell>
-                <TableCell>Nom</TableCell>
-                <TableCell>Telephone</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filterusers.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>{user.prenom}</TableCell>
-                  <TableCell>{user.nom}</TableCell>
-                  <TableCell>{user.telephone}</TableCell>
-                  <TableCell>
-                   
-                    <IconButton color="default" onClick={() => { handleDetails(user) }}>
-                      <FolderSharedIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {/* Dossier medical info */}
+        <div className='row'>
+        <div className='col-md-6'>
+        <div className="card  " >
+          <div className="card-body ">
+            <h5 className="card-title">Dossier d'informations sur le patient  <p className='text text-primary'>{patient ? patient.prenom + " " + patient.nom : null}</p> </h5>
+            <p className="card-text">Date Creation: {dossierInfo.dateCreation  ? dossierInfo.dateCreation.substring(0, 10) : null}</p>
+            <p className="card-text">Patient ID: {dossierInfo.patientId}</p>
+            <p className="card-text">Groupe sanguin: {dossierInfo.patDescription}</p>
+          </div>
+        
+        </div>
+        </div>
+        <div className='col-md-6 '>
+        <button className='btn btn-primary' onClick={handleOpenDialog}>Ajouter une consultation</button>
+        </div>
+       
+       
+        {consultations.length >0 ? 
+        (
+        <table className="table m-2">
+          <thead>
+            <tr>
+              <th scope="col">Consultation ID</th>
+              <th scope="col">ordonnance</th>
+    
+            </tr>
+          </thead>
+          <tbody>
+           { consultations.map((consultation) => (
+              <tr key={consultation.id}>
+                <td>
+                  <div className="card-body">
+                    <h5 className="card-title"> {consultation.id}</h5>
+                  </div>
+                </td>
+                <td>
+               
+                  <Link to={`/Prescription-Doc/${consultation.id}/${userid}`}> <Icon icon="fa-solid:file-medical" color="#869" width="50" vFlip={true} /></Link>
+                </td>  
+              </tr>
+          ))}
+          </tbody>
+        </table>
+     ): (<p className='text mt-4 text-danger text-center'>No data Found</p>)}
+ </div>
 
-        {/* Delete Confirmation Dialog */}
-        <DialogDeleteUser
-          open={deleteDialogOpen}
-          onClose={() => setDeleteDialogOpen(false)}
-          onConfirm={handleDeleteConfirmed}
-          userName={userToDelete ? userToDelete.name : ""}
-        />
+{/* Utilisez le composant AddConsultation en le rendant conditionnellement visible */}
+<AddConsultation open={isDialogOpen} onClose={handleCloseDialog} user={patient} />
 
-        {/* Details Modal */}
-        <DetailsModal
-          user={selectedUser}
-          open={openModal}
-          onClose={handleCloseModal}
-        />
-       <DialogUpdate
-          open={updateDialogOpen}
-          onClose={handleCloseUpdateDialog}
-          onUpdate={handleUpdate}
-          user={selectedUser}
-        />
       </Dashboard>
-    </div>
+    </>
   );
 }
 

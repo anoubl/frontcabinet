@@ -40,7 +40,7 @@ const DetailsModal = ({ user, open, onClose }) => {
                 <DetailRow label="Téléphone" value={user.telephone} />
               </div>
               <div className="col-md-6">
-                <DetailRow label="Date de naissance" value={user.dateNaissance} />
+                <DetailRow label="Date de naissance" value={user.dateNaissance.substring(0,10)} />
                 <DetailRow label="Adresse" value={user.adresse} />
                 <DetailRow label="Email" value={user.email} />
               </div>

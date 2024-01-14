@@ -245,9 +245,7 @@ function RendezVous() {
                         <IconButton onClick={() => handleOpenInfoDialog(appointment)}>
                           <InfoIcon color="success" />
                         </IconButton>
-                        <IconButton onClick={() => handleOpenInfoDialog(appointment)}>
-                          <DriveFileMoveIcon color="warning" />
-                        </IconButton>
+                        
                         <IconButton onClick={() => handleDeleteAppointment(appointment.id)}>
                           <DeleteIcon color="secondary" />
                         </IconButton>

@@ -25,7 +25,7 @@ const DetailsModal = ({ user, open, onClose }) => {
     };
   
     const patientDetailsStyle = {
-      margin: '40px',
+      margin: '50px',
     };
   
     return (
@@ -34,14 +34,14 @@ const DetailsModal = ({ user, open, onClose }) => {
         <DialogContent>
           {user ? (
             <div style={patientDetailsStyle}>
-              <div className="row">
-                <div className="col-md-6">
+              <div className="row d-flex">
+                <div className="col-md-4">
                   <DetailRow label="Prénom" value={user.prenom} />
                   <DetailRow label="Nom" value={user.nom} />
                   <DetailRow label="Téléphone" value={user.telephone} />
                 </div>
-                <div className="col-md-6">
-                  <DetailRow label="Date de naissance" value={user.dateNaissance} />
+                <div className="col-md-8">
+                  <DetailRow label="Date de naissance" value={user.dateNaissance.substring(0,10)} />
                   <DetailRow label="Adresse" value={user.adresse} />
                   <DetailRow label="Email" value={user.email} />
                 </div>

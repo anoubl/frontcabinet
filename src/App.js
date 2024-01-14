@@ -20,8 +20,10 @@ import Dashboarddoc from "./Docteur/Dashboard";
 import Patientdoc from "./Docteur/Patients/Patients";
 
 import InfermierDoc from "./Docteur/Infermier/Infermier";
-import Dosser from "./Patients/Dossier medical/Dosser";
 import Profille from "./Infermerie/Profille/Profille";
+import ProfilleDoc from "./Docteur/Profille/Profille";
+import DossierMed from "./Docteur/DossierMed/DossierMed";
+import PrescriptionTemplate from "./Ordonance/PrescriptionTemplate";
 
 
 function App() {
@@ -51,7 +53,9 @@ function App() {
           <Route path="/Dashboard-doc" element={<Dashboarddoc/>} />
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
           <Route path="/Profille" element={<Profille/>} />
-          <Route path="/Dossier-Med/:userid" element={<Dosser/>} />
+          <Route path="/Dossier-Med/:userid" element={<DossierMed/>} />
+          <Route path="/Profille-Doc" element={<ProfilleDoc/>} />
+          <Route path="/Prescription-Doc/:consultationId/:patientId" element={<PrescriptionTemplate/>} />
 
         </Routes>
       </div>

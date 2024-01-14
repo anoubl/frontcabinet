@@ -6,7 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Patient.css'
-import 'react-toastify/dist/ReactToastify.css'; import {
+import 'react-toastify/dist/ReactToastify.css';
+ import {
   Table,
   TableBody,
   TableCell,
@@ -24,7 +25,6 @@ import DialogDeleteUser from './DialogDeleteUser'; // Import the DialogDeleteUse
 import DialogUpdate from './DialogUpdate';
 import FolderIcon from '@mui/icons-material/Folder';
 import { Link } from 'react-router-dom';
-import Dosser from './Dossier medical/Dosser';
 
 function Patients() {
   const [messageu, setMessageu] = useState("");
@@ -92,8 +92,9 @@ function Patients() {
   };
 
   const handleDetails = (user) => {
-    setSelectedUserId(user.id);
+    setSelectedUser(user);
     setOpenModal(true);
+   
   };
 
   const handleCloseModal = () => {
@@ -143,6 +144,7 @@ function Patients() {
           pauseOnHover
           theme="light"
         />
+
         <div className='row mb-2'>
           <div className='col-md-8'>
             <input
@@ -159,8 +161,6 @@ function Patients() {
             <button onClick={handleReset} className='btn btn-danger'>Reset</button>
           </div>
         </div>
-
-
 
         <TableContainer component={Paper}>
           <Table>
@@ -185,15 +185,9 @@ function Patients() {
                     <IconButton color="secondary" onClick={() => handleDelete(user.id, user.nom)}>
                       <DeleteIcon />
                     </IconButton>
-                    <IconButton color="success" onClick={() => { handleDetails(user) }}>
+                    <IconButton color="success" onClick={() =>  {console.log(user);handleDetails(user)} }>
                       <VisibilityIcon />
                     </IconButton>
-                    <Link to={`/Dossier-Med/${user.id}`}>
-                      <IconButton color="warning">
-                        <FolderIcon />
-                      </IconButton>
-                    </Link>
-
                   </TableCell>
                 </TableRow>
               ))}
@@ -246,9 +240,7 @@ function Patients() {
           />
         )}
 
-        {selectedUserId && (
-          <Dosser user={selectedUser} />
-        )}
+       
       </Dashboard>
     </div>
   );

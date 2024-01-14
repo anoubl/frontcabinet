@@ -27,11 +27,12 @@ export default function SignIn() {
         console.log("User is valid");
         const userRole = response.data.rôle;
         localStorage.setItem("userid" , response.data.id);
+        localStorage.setItem("role",response.data.rôle)
         // Redirect based on user role
         if (userRole === 1) {
-          navigate('/Dashboard-doc');
+          navigate('/manage-patient-doc');
         } else if (userRole === 0) {
-          navigate('/Dashboard-inf');
+          navigate('/manage-patient');
         } else {
           console.log("Invalid user role");
         }

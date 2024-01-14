@@ -120,7 +120,7 @@ export default function Dashboarddoc(props) {
               Dashboard
             </Typography>
             <IconButton >
-              <Link to="/Profille">
+              <Link to="/Profille-Doc">
               <AccountCircleIcon color='dark'/>
               </Link>
             </IconButton>
@@ -158,13 +158,7 @@ export default function Dashboarddoc(props) {
               </ListItemIcon>
               <ListItemText primary="liste-infermiers" />
             </ListItem>
-            <ListItem component={RouterLink} to="/Dossier-med" button>
-              <ListItemIcon>
-                {/* Remplacez AssignmentIndIcon par l'icône de votre choix, par exemple EventNoteIcon */}
-                <EventNoteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dossier-médical" />
-            </ListItem>
+
           </List>
           
         </Drawer>
