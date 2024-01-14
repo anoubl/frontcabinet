@@ -32,8 +32,13 @@ export default function SignIn() {
         if (userRole === 1) {
           navigate('/manage-patient-doc');
         } else if (userRole === 0) {
-          navigate('/manage-patient');
-        } else {
+          navigate('/Dashboard-inf');
+        }
+        else if(userRole === 2){
+          navigate('/profile');
+
+        } 
+        else{
           console.log("Invalid user role");
         }
       } else {
