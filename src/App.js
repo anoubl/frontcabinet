@@ -22,6 +22,10 @@ import Patientdoc from "./Docteur/Patients/Patients";
 import InfermierDoc from "./Docteur/Infermier/Infermier";
 import Dosser from "./Patients/Dossier medical/Dosser";
 import Profille from "./Infermerie/Profille/Profille";
+import PrimarySearchAppBar from "./Session_Pat/Dashboard-Pat";
+import Profill from "./Session_Pat/profile";
+import Prof from "./Session_Pat/profile";
+
 
 
 function App() {
@@ -52,6 +56,8 @@ function App() {
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
           <Route path="/Profille" element={<Profille/>} />
           <Route path="/Dossier-Med/:userid" element={<Dosser/>} />
+          <Route path="/Profille-Pat" element={<PrimarySearchAppBar/>} />
+          
 
         </Routes>
       </div>
