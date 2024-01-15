@@ -15,33 +15,63 @@ const Bookings = () => {
   const [formData, setFormData] = useState({});
   const [rendez, setRendez] = useState("");
   const [rendezsuc, setRendezSuc] = useState("");
-
+  const [timeSlots, setTimeslot] = useState();
+  const time = [
+    "09:00AM - 10:00AM",
+    "10:00AM - 11:00AM",
+    "11:00AM - 12:00PM",
+    "12:00PM - 01:00PM",
+    "01:00PM - 02:00PM",
+    "02:00PM - 03:00PM",
+    "03:00PM - 04:00PM",
+    "04:00PM - 05:00PM",
+    "05:00PM - 06:00PM",
+    "06:00PM - 07:00PM",
+    "07:00PM - 08:00PM"]
   //date
   const [selectedDate, setSelectedDate] = useState(null);
+  const [dctrName,setDctrName] =useState("")
   const todayd = new Date();
   const tomorrow = new Date(todayd);
   tomorrow.setDate(tomorrow.getDate() + 1);
-
+  const [heures, setHeures] = useState([])
   const isWeekend = (date) => {
     const day = date.getDay();
     return day === 0 || day === 6; // Sunday (0) and Saturday (6)
   };
   const formatDate = (date) => {
+
     const day = date.getDate();
     const month = date.getMonth() + 1; // Les mois commencent à partir de zéro, donc on ajoute 1
     const year = date.getFullYear();
-  
-    // Ajouter un zéro devant le jour ou le mois si nécessaire
     const formattedDay = day < 10 ? `0${day}` : day;
     const formattedMonth = month < 10 ? `0${month}` : month;
-  
     return `${year}-${formattedMonth}-${formattedDay}`;
   };
-
+  useEffect(() => {
+    let dateRendez;
+    if (selectedDate === null) {
+      dateRendez = new Date();
+    }
+    else {
+      dateRendez = formatDate(selectedDate);
+    }
+    axios.get(`https://anoubl-001-site1.atempurl.com/Heures/${dateRendez}/${dctrName}`)
+      .then((response) => {
+        const apiResponse = response.data;
+        setTimeslot(time.map(slot => ({
+          value: slot.trim(),
+          available: !apiResponse.includes(slot.trim())
+        })));
+        console.log(timeSlots)
+      })
+      .catch((error) => console.log(error));
+  }, [selectedDate,dctrName])
   useEffect(() => {
     axios.get("https://anoubl-001-site1.atempurl.com/api/Users")
       .then((response) => {
         setusers(response.data);
+        console.log(response.data)
       })
       .catch((error) => console.log(error))
   }, []);
@@ -49,12 +79,14 @@ const Bookings = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const [plage, setPlage] = useState("");
 
   const handleForm = (e) => {
     e.preventDefault();
     // Effectuez votre logique de validation ici si nécessaire
-    const dateRendez= formatDate(selectedDate);
     //Envoi de la requête POST
+    const dateRendez = formatDate(selectedDate);
+
     axios.post("https://anoubl-001-site1.atempurl.com/api/Users", {
       prenom: formData.prenom,
       nom: formData.nom,
@@ -71,7 +103,8 @@ const Bookings = () => {
             Patientemail: formData.email,
             DateRendezVous: dateRendez,
             Description: formData.Description,
-            Plage: formData.Heure,
+            Plage: plage,
+            dctrId : dctrName
           }).then((response) => {
             if (response.status === 201) {
               setRendezSuc("rendez vous créer avec succés.")
@@ -98,9 +131,9 @@ const Bookings = () => {
     }
     else if (rendezsuc) {
       toast.success(rendezsuc);
-      setRendezSuc("");
     }
   }, [rendez, rendezsuc])
+
   return (
     <>
       <Navbar>
@@ -122,36 +155,25 @@ const Bookings = () => {
           data-aos-duration="1000"
         >
           <h2 className="section-title">Formulaire de rendez-vous en ligne</h2>
-          <p className="bookings-about">
-            Vous pouvez consulter les horaires de travail de chaque médecin ci-dessous avant de prendre rendez-vous.
-          </p>
           <table className="table text-center container">
             <thead>
               <tr>
-                <th scope="col">1</th>
-                <th scope="col">Dr. Ali Benani</th>
-                <th scope="col">
-                  Mardi, Jeudi et Vendredi de 14h00 à 21h00
-                </th>
-                <th scope="col">Mercredi de 08h00 à 15h00</th>
+                <th>Docteur Name</th>
+                <th>Service</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">2</th>
+                <td scope="col">Dr. Ali Benani</td>
+                <td>Spirométrie</td>
+              </tr>
+              <tr>
                 <td>Dr. Salma Benani</td>
-                <td>Lundi, Mardi, Jeudi et Vendredi de 09h30 à 14h00</td>
+                <td>Consultation apnée</td>
               </tr>
             </tbody>
             <tbody>
-              <tr>
-                <th scope="row">3</th>
-                <td>Dr. Drugă Oana-Eufrosina</td>
-                <td>
-                  Lundi - 14h00-20h00 | Mardi - 08h00-16h30 | Mercredi - 14h00-20h00
-                </td>
-                <td>Jeudi - 08h00-16h30 | Vendredi et Samedi - 08h00-11h00</td>
-              </tr>
+
             </tbody>
           </table>
           <h2 className="section-title">Nous ne sommes qu'à un clic de distance.</h2>
@@ -239,7 +261,18 @@ const Bookings = () => {
 
                 </textarea>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 d-flex">
+                <label htmlFor="inputDate" className="form-label">
+                  Le nom du docteur :
+                </label>
+                <select onChange={(e) => setDctrName(e.target.value)} className="form-control mytime">
+                  <option value=""> Votre Docteur :</option>
+                  {users.filter((U) => U.rôle ===1).map((U) => (
+                   <option value={U.id}> {U.prenom + " " +U.nom}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="col-md-6 d-flex">
                 <label htmlFor="inputDate" className="form-label">
                   Date de naissance :
                 </label>
@@ -253,7 +286,7 @@ const Bookings = () => {
                 // Définir la date minimale à aujourd'hui
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 d-flex">
                 <label htmlFor="inputDate" className="form-label">
                   Date du rendez-vous :
                 </label>
@@ -266,20 +299,21 @@ const Bookings = () => {
                   dateFormat="yyyy-MM-dd"
                 />
               </div>
-              <div className="col-md-6">
-                <label htmlFor="inputTime" className="form-label">
-                  Plage horaire :
-                </label>
-                <input
-                  required
-                  onChange={handleFormChange}
-                  type="time"
-                  className="form-control"
-                  id="inputTime"
-                  name="Heure" // Ajout de l'attribut name
+              {selectedDate ? (
+                <div className="col-md-6">
+                  <label className="labels">Select time slot</label>
+                  <select onChange={(event) => setPlage(event.target.value)}
+                    className="form-control mytime" name="aptime" id="aptime" >
+                    <option value="">--Select Time Slot--</option>
+                    {timeSlots ? timeSlots.filter((H) => H.available === true).map((time) => (
+                      <option value={time.value}>{time.value}</option>
+                    )) : null}
 
-                />
-              </div>
+                  </select>
+                  <span id="smsg"></span>
+                </div>
+              ) : null}
+
 
               <div className="col-12">
                 <button type="submit" className="btn btn-primary">

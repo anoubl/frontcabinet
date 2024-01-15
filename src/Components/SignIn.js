@@ -27,7 +27,9 @@ export default function SignIn() {
         console.log("User is valid");
         const userRole = response.data.rôle;
         localStorage.setItem("userid" , response.data.id);
+        localStorage.setItem("fullName" , response.data.prenom + " " + response.data.nom);
         localStorage.setItem("role",response.data.rôle)
+        localStorage.setItem("email",email)
         // Redirect based on user role
         if (userRole === 1) {
           navigate('/manage-patient-doc');
@@ -35,7 +37,7 @@ export default function SignIn() {
           navigate('/Dashboard-inf');
         }
         else if(userRole === 2){
-          navigate('/profile');
+          navigate('/ListRendezVous-Patient');
 
         } 
         else{

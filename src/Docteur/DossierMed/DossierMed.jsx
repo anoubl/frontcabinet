@@ -10,6 +10,7 @@ import { Icon } from '@iconify/react';
 
 import PrescriptionTemplate from '../../Ordonance/PrescriptionTemplate';
 import AddConsultation from './AddConsultation';
+import { toast, ToastContainer } from 'react-toastify';
 function DossierMed() {
   const [dossierInfo, setDossierInfo] = useState({});
   const [consultations, setConsultations] = useState([]);
@@ -31,10 +32,8 @@ function DossierMed() {
       .then((response) => {
         console.log(response)
          setPatient(response.data[0].patientInfo)
-        console.log(response.data[0].consultations)
         setConsultations(response.data[0].consultations)
         setDossierInfo(response.data[0].dossierInformation);
-        console.info(response.data[0].dossierInformation);
       })
       .catch((error) => console.log(error));
   };
@@ -42,10 +41,39 @@ const dossierId=dossierInfo.dossierId;
   useEffect(() => {
     handleDossiers();
   }, [userid]);
-
+  const handleConsultationSubmit = (description,Total) => {
+    // Add your logic for form submission or API call here
+    console.log(`Adding consultation for user  with description: ${description}`);
+    axios.post("https://anoubl-001-site1.atempurl.com/api/DossierDetails",{
+      description:description,
+      dossierId:dossierId,
+      Total:Total
+    }).then((response) => {
+      console.log(response)
+      if(response.status===201)
+      {
+        toast.success("la consultation a été ajouter avec succés")
+        handleDossiers();
+      }
+    })
+    .catch((error) => console.log(error));
+    handleCloseDialog();
+  };
   return (
     <>
       <Dashboard>
+      <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         {/* Dossier medical info */}
         <div className='row'>
         <div className='col-md-6'>
@@ -71,7 +99,7 @@ const dossierId=dossierInfo.dossierId;
             <tr>
               <th scope="col">Consultation ID</th>
               <th scope="col">ordonnance</th>
-    
+              <th>Total </th>
             </tr>
           </thead>
           <tbody>
@@ -83,9 +111,11 @@ const dossierId=dossierInfo.dossierId;
                   </div>
                 </td>
                 <td>
-               
                   <Link to={`/Prescription-Doc/${consultation.id}/${userid}`}> <Icon icon="fa-solid:file-medical" color="#869" width="50" vFlip={true} /></Link>
-                </td>  
+                </td> 
+                <td>
+                  {consultation.total}DH
+                  </td> 
               </tr>
           ))}
           </tbody>
@@ -94,7 +124,7 @@ const dossierId=dossierInfo.dossierId;
  </div>
 
 {/* Utilisez le composant AddConsultation en le rendant conditionnellement visible */}
-<AddConsultation open={isDialogOpen} onClose={handleCloseDialog} user={patient} />
+<AddConsultation open={isDialogOpen} onClose={handleCloseDialog} user={patient} onSubmit={handleConsultationSubmit} />
 
       </Dashboard>
     </>

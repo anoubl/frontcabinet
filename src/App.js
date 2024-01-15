@@ -26,6 +26,13 @@ import Profill from "./Session_Pat/profile";
 import Prof from "./Session_Pat/profile";
 import PrescriptionTemplate from "./Ordonance/PrescriptionTemplate";
 import DossierMed from "./Docteur/DossierMed/DossierMed";
+import Navbar from "./PatientSessionsAnoubl/Navbar";
+import NavbarPatient from "./PatientSessionsAnoubl/Navbar";
+import List from "./RendezVous/List";
+import ProfilleDoc from "./Docteur/Profille/Profille";
+import AccueilDoc from "./Docteur/home";
+import ListPatient from "./PatientSessionsAnoubl/Rendez";
+import FolderPatient from "./PatientSessionsAnoubl/Folder";
 
 
 
@@ -57,8 +64,16 @@ function App() {
           <Route path="/Manage-inf" element={<InfermierDoc/>} />
           <Route path="/Profille" element={<Profille/>} />
           <Route path="/Profille-Pat" element={<PrimarySearchAppBar/>} />
+          <Route path="/Profille-Doc" element={<ProfilleDoc/>} />
+          <Route path='/Accueil-Doc' element={<AccueilDoc/>}></Route>
           <Route path='/Prescription-Doc/:consultationId/:patientId' element={<PrescriptionTemplate/>}></Route>
            <Route path='/Dossier-Med/:userid' element={<DossierMed/>}></Route>
+           <Route path="/ListRendezVous" element={<List/>}></Route>
+           {/*  session patient by anoubl */}
+           <Route path='/Accueil-Patient' element={<NavbarPatient/>}></Route>
+           <Route path='/ListRendezVous-Patient' element={<ListPatient/>}></Route>
+           <Route path='/Folder-Patient' element={<FolderPatient/>}></Route>
+
         </Routes>
       </div>
     </Router>

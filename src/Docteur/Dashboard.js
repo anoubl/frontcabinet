@@ -146,6 +146,12 @@ export default function Dashboarddoc(props) {
           <List component="nav">
 
             <Divider sx={{ my: 1 }} />
+            <ListItem component={RouterLink} to="/Accueil-Doc" button>
+              <ListItemIcon>
+                <AssignmentIndIcon />
+              </ListItemIcon>
+              <ListItemText primary="Accueil" />
+            </ListItem>
             <ListItem component={RouterLink} to="/manage-patient-doc" button>
               <ListItemIcon>
                 <AssignmentIndIcon />
@@ -158,7 +164,12 @@ export default function Dashboarddoc(props) {
               </ListItemIcon>
               <ListItemText primary="liste-infermiers" />
             </ListItem>
-
+            <ListItem component={RouterLink} to="/ListRendezVous" button>
+            <ListItemIcon>
+                <AssignmentIndIcon />
+              </ListItemIcon>
+              <ListItemText primary="liste-Rendez-Vous" />
+            </ListItem>
           </List>
           
         </Drawer>
