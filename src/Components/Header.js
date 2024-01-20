@@ -14,7 +14,7 @@ const Header = () => {
     >
       <div className="header-h1-btn-wrapper mx-auto">
         <h1 className="header-h1">
-          Bienvenue au Centre Médical  <br /> 
+          Bienvenue au Centre Médical Wissal Ettaqi <br /> 
         </h1>
       
         <Link className="btn btn-primary" to="about">En savoir plus</Link>
